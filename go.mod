@@ -1,4 +1,4 @@
-module github.com/joshguarino/pokego
+module github.com/joshguarino/poketool
 
 go 1.22.2
 

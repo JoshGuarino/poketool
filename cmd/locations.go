@@ -1,6 +1,5 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2024 Josh Guarino <jguarino722@gmail.com>
 */
 package cmd
 

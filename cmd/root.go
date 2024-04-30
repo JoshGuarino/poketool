@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/joshguarino/poketool/internal/berries"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -39,7 +40,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-
+	berries.Berry()
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.

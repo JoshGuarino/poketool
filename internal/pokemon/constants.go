@@ -1,1 +1,3 @@
 package pokemon
+
+const ()

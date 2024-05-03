@@ -10,7 +10,7 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetResourceList(url string) structs.Resource {
+func Get(url string) []byte {
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("Accept", "application/json")
 	client := &http.Client{}
@@ -25,7 +25,20 @@ func GetResourceList(url string) structs.Resource {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	return body
+}
+
+func GetResourceList(url string) structs.Resource {
+	body := Get(url)
 	resourceList := structs.Resource{}
 	json.Unmarshal(body, &resourceList)
 	return resourceList
+}
+
+func GetPokemonLocationAreas(nameOrId string) []LocationAreaEncounter {
+	url := PokeApiBaseUrl + "/pokemon/" + nameOrId + "/encounters"
+	body := Get(url)
+	pokemonLocationAreas := []LocationAreaEncounter{}
+	json.Unmarshal(body, &pokemonLocationAreas)
+	return pokemonLocationAreas
 }

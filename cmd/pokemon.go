@@ -22,9 +22,9 @@ var pokemonCmd = &cobra.Command{
 		// select prompt
 		prompt := promptui.Select{
 			Label: "Select pokemon group resource",
-			Items: []string{"Abilities", "Characteristics", "Egg group", "Gender", "Growth Rate", "Nature",
-				"Pokeathlon Stat", "Pokemon", "Pokemon Color", "Pokemon Form", "Pokemon Habitat", "Pokemon Shape",
-				"Pokemon Species", "Stat", "Type"},
+			Items: []string{"Abilities", "Characteristics", "Egg group", "Genders", "Growth Rate", "Natures",
+				"Pokeathlon Stats", "Pokemon", "Pokemon Colors", "Pokemon Forms", "Pokemon Habitats", "Pokemon Shapes",
+				"Pokemon Species", "Stats", "Types"},
 		}
 		_, result, err := prompt.Run()
 		if err != nil {
@@ -38,13 +38,13 @@ var pokemonCmd = &cobra.Command{
 			prompt := promptui.Prompt{
 				Label: "Search",
 			}
-			result, err := prompt.Run()
+			search, err := prompt.Run()
 			if err != nil {
 				fmt.Printf("Prompt failed %v\n", err)
 				return
 			}
 
-			s := pokemon.GetSpecfic(result)
+			s := pokemon.GetSpecific(result, search)
 			fmt.Println(s)
 			return
 		}

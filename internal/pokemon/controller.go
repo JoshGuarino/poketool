@@ -1,74 +1,78 @@
 package pokemon
 
-func GetList(result string) string {
+import (
+	"github.com/mtslzr/pokeapi-go/structs"
+)
+
+func GetList(result string) structs.Resource {
 	switch result {
 	case "Abilities":
-		//fmt.Println()
+		return GetAbilityList()
 	case "Characteristics":
-		//fmt.Println()
-	case "Egg Group":
-		//fmt.Println()
-	case "Gender":
-		//fmt.Println()
-	case "Growth Rate":
-		//fmt.Println()
-	case "Nature":
-		//fmt.Println()
-	case "Pokeathlon Stat":
-		//fmt.Println()
+		return GetCharacteristicList()
+	case "Egg Groups":
+		return GetEggGroupList()
+	case "Genders":
+		return GetGenderList()
+	case "Growth Rates":
+		return GetGrowthRateList()
+	case "Natures":
+		return GetNatureList()
+	case "Pokeathlon Stats":
+		return GetPokeathlonStatList()
 	case "Pokemon":
-		//fmt.Println()
-	case "Pokemon Color":
-		//fmt.Println()
-	case "Pokemon Form":
-		//fmt.Println()
-	case "pokemon Habitat":
-		//fmt.Println()
-	case "Pokemon Shape":
-		//fmt.Println()
+		return GetPokemonList()
+	case "Pokemon Colors":
+		return GetPokemonColorList()
+	case "Pokemon Forms":
+		return GetPokemonFormList()
+	case "pokemon Habitats":
+		return GetPokemonHabitatList()
+	case "Pokemon Shapes":
+		return GetPokemonShapeList()
 	case "Pokemon Species":
-		//fmt.Println()
-	case "Stat":
-		//fmt.Println()
-	case "Type":
-		//fmt.Println()
+		return GetPokemonSpeciesList()
+	case "Stats":
+		return GetStatList()
+	case "Types":
+		return GetTypeList()
 	}
 
-	return "test"
+	return structs.Resource{}
 }
 
-func GetSpecfic(result string) string {
+func GetSpecific(result string, search string) interface{} {
 	switch result {
 	case "Abilities":
-		//fmt.Println()
+		return GetAbility(search)
 	case "Characteristics":
-		//fmt.Println()
+		return GetCharacteristic(search)
 	case "Egg Group":
-		//fmt.Println()
-	case "Gender":
-		//fmt.Println()
-	case "Growth Rate":
-		//fmt.Println()
-	case "Nature":
-		//fmt.Println()
-	case "Pokeathlon Stat":
-		//fmt.Println()
+		return GetEggGroup(search)
+	case "Genders":
+		return GetGender(search)
+	case "Growth Rates":
+		return GetGrowthRate(search)
+	case "Natures":
+		return GetNature(search)
+	case "Pokeathlon Stats":
+		return GetPokeathlonStat(search)
 	case "Pokemon":
-		//fmt.Println()
-	case "Pokemon Color":
-		//fmt.Println()
-	case "Pokemon Form":
-		//fmt.Println()
-	case "pokemon Habitat":
-		//fmt.Println()
-	case "Pokemon Shape":
-		//fmt.Println()
+		return GetPokemon(search)
+	case "Pokemon Colors":
+		return GetPokemonColor(search)
+	case "Pokemon Forms":
+		return GetPokemonForm(search)
+	case "pokemon Habitats":
+		return GetPokemonHabitat(search)
+	case "Pokemon Shapes":
+		return GetPokemonShape(search)
 	case "Pokemon Species":
-		//fmt.Println()
-	case "Stat":
-		//fmt.Println()
-	case "Type":
-		//fmt.Println()
+		return GetPokemonSpecies(search)
+	case "Stats":
+		return GetStat(search)
+	case "Types":
+		return GetType(search)
 	}
 
 	return ""

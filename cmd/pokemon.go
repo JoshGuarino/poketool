@@ -51,11 +51,6 @@ var pokemonCmd = &cobra.Command{
 
 		l := pokemon.GetList(result)
 		fmt.Println(l)
-
-		// p := pokemon.GetPokemon("1")
-		// s, _ := json.MarshalIndent(p, "", "\t")
-		// fmt.Printf("%+v\n", s)
-		// fmt.Println(string(s))
 	},
 }
 

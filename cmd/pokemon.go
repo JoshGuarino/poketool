@@ -44,7 +44,11 @@ var pokemonCmd = &cobra.Command{
 				return
 			}
 
-			s := pokemon.GetSpecific(result, search)
+			s, err := pokemon.GetSpecific(result, search)
+			if err != nil {
+				fmt.Println("Unable to find pokemon group resource", search, "for", result)
+				return
+			}
 			fmt.Println(s)
 			return
 		}

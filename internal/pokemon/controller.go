@@ -41,7 +41,7 @@ func GetList(result string) structs.Resource {
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) interface{} {
+func GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Abilities":
 		return GetAbility(search)
@@ -75,5 +75,5 @@ func GetSpecific(result string, search string) interface{} {
 		return GetType(search)
 	}
 
-	return ""
+	return "", nil
 }

@@ -11,7 +11,7 @@ import (
 func GetAbility(nameOrId string) (structs.Ability, error) {
 	ability, err := pokeapi.Ability(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.Ability{}, err
 	}
 	return ability, nil
@@ -25,7 +25,7 @@ func GetAbilityList() structs.Resource {
 func GetCharacteristic(id string) (structs.Characteristic, error) {
 	characteristic, err := pokeapi.Characteristic(id)
 	if err != nil {
-		fmt.Println("Unable to find ability by", id)
+		fmt.Println(internal.ErrorStringGetById, id)
 		return structs.Characteristic{}, err
 	}
 	return characteristic, nil
@@ -39,7 +39,7 @@ func GetCharacteristicList() structs.Resource {
 func GetEggGroup(nameOrId string) (structs.EggGroup, error) {
 	eggGroup, err := pokeapi.EggGroup(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.EggGroup{}, err
 	}
 	return eggGroup, nil
@@ -53,7 +53,7 @@ func GetEggGroupList() structs.Resource {
 func GetGender(nameOrId string) (structs.Gender, error) {
 	gender, err := pokeapi.Gender(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.Gender{}, err
 	}
 	return gender, nil
@@ -67,7 +67,7 @@ func GetGenderList() structs.Resource {
 func GetGrowthRate(nameOrId string) (structs.GrowthRate, error) {
 	growthRate, err := pokeapi.GrowthRate(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.GrowthRate{}, err
 	}
 	return growthRate, nil
@@ -81,7 +81,7 @@ func GetGrowthRateList() structs.Resource {
 func GetNature(nameOrId string) (structs.Nature, error) {
 	nature, err := pokeapi.Nature(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.Nature{}, err
 	}
 	return nature, nil
@@ -95,7 +95,7 @@ func GetNatureList() structs.Resource {
 func GetPokeathlonStat(nameOrId string) (structs.PokeathlonStat, error) {
 	pokeathlonStat, err := pokeapi.PokeathlonStat(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.PokeathlonStat{}, err
 	}
 	return pokeathlonStat, nil
@@ -109,7 +109,7 @@ func GetPokeathlonStatList() structs.Resource {
 func GetPokemon(nameOrId string) (structs.Pokemon, error) {
 	pokemon, err := pokeapi.Pokemon(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.Pokemon{}, err
 	}
 	return pokemon, nil
@@ -128,7 +128,7 @@ func GetPokemonLocationAreas(nameOrId string) []internal.LocationAreaEncounter {
 func GetPokemonColor(nameOrId string) (structs.PokemonColor, error) {
 	pokemonColor, err := pokeapi.PokemonColor(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.PokemonColor{}, err
 	}
 	return pokemonColor, nil
@@ -142,7 +142,7 @@ func GetPokemonColorList() structs.Resource {
 func GetPokemonForm(nameOrId string) (structs.PokemonForm, error) {
 	pokemonForm, err := pokeapi.PokemonForm(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.PokemonForm{}, err
 	}
 	return pokemonForm, nil
@@ -156,7 +156,7 @@ func GetPokemonFormList() structs.Resource {
 func GetPokemonHabitat(nameOrId string) (structs.PokemonHabitat, error) {
 	pokemonHabitat, err := pokeapi.PokemonHabitat(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.PokemonHabitat{}, err
 	}
 	return pokemonHabitat, nil
@@ -170,7 +170,7 @@ func GetPokemonHabitatList() structs.Resource {
 func GetPokemonShape(nameOrId string) (structs.PokemonShape, error) {
 	pokemonShape, err := pokeapi.PokemonShape(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.PokemonShape{}, err
 	}
 	return pokemonShape, nil
@@ -184,7 +184,7 @@ func GetPokemonShapeList() structs.Resource {
 func GetPokemonSpecies(nameOrId string) (structs.PokemonSpecies, error) {
 	pokemonSpecies, err := pokeapi.PokemonSpecies(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.PokemonSpecies{}, err
 	}
 	return pokemonSpecies, nil
@@ -198,7 +198,7 @@ func GetPokemonSpeciesList() structs.Resource {
 func GetStat(nameOrId string) (structs.Stat, error) {
 	stat, err := pokeapi.Stat(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.Stat{}, err
 	}
 	return stat, nil
@@ -212,7 +212,7 @@ func GetStatList() structs.Resource {
 func GetType(nameOrId string) (structs.Type, error) {
 	pokemonType, err := pokeapi.Type(nameOrId)
 	if err != nil {
-		fmt.Println("Unable to find ability by", nameOrId)
+		fmt.Println(internal.ErrorStringGetByNameOrId, nameOrId)
 		return structs.Type{}, err
 	}
 	return pokemonType, nil

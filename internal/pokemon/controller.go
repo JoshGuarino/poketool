@@ -47,7 +47,7 @@ func GetSpecific(result string, search string) (interface{}, error) {
 		return GetAbility(search)
 	case "Characteristics":
 		return GetCharacteristic(search)
-	case "Egg Group":
+	case "Egg Groups":
 		return GetEggGroup(search)
 	case "Genders":
 		return GetGender(search)

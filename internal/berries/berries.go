@@ -2,20 +2,19 @@ package berries
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetBerry(nameOrId string) structs.Berry {
+func GetBerry(nameOrId string) (structs.Berry, error) {
 	berry, err := pokeapi.Berry(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "berry", nameOrId)
+		return structs.Berry{}, err
 	}
-	return berry
+	return berry, nil
 }
 
 func GetBerryList() structs.Resource {
@@ -23,13 +22,13 @@ func GetBerryList() structs.Resource {
 	return berryList
 }
 
-func GetBerryFirmness(nameOrId string) structs.BerryFirmness {
+func GetBerryFirmness(nameOrId string) (structs.BerryFirmness, error) {
 	BerryFirmness, err := pokeapi.BerryFirmness(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "berry firmness", nameOrId)
+		return structs.BerryFirmness{}, nil
 	}
-	return BerryFirmness
+	return BerryFirmness, nil
 }
 
 func GetBerryFirmnessList() structs.Resource {
@@ -37,13 +36,13 @@ func GetBerryFirmnessList() structs.Resource {
 	return berryFirmnessList
 }
 
-func GetBerryFlavor(nameOrId string) structs.BerryFlavor {
+func GetBerryFlavor(nameOrId string) (structs.BerryFlavor, error) {
 	berryFlavor, err := pokeapi.BerryFlavor(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "berry firmness", nameOrId)
+		return structs.BerryFlavor{}, err
 	}
-	return berryFlavor
+	return berryFlavor, nil
 }
 
 func GetBerryFlavorList() structs.Resource {

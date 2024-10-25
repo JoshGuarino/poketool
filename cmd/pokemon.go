@@ -11,8 +11,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var search bool
-
 // pokemonCmd represents the pokemon command
 var pokemonCmd = &cobra.Command{
 	Use:   "pokemon",
@@ -22,7 +20,7 @@ var pokemonCmd = &cobra.Command{
 		// select prompt
 		prompt := promptui.Select{
 			Label: "Select pokemon group resource",
-			Items: []string{"Abilities", "Characteristics", "Egg group", "Genders", "Growth Rate", "Natures",
+			Items: []string{"Abilities", "Characteristics", "Egg groups", "Genders", "Growth Rate", "Natures",
 				"Pokeathlon Stats", "Pokemon", "Pokemon Colors", "Pokemon Forms", "Pokemon Habitats", "Pokemon Shapes",
 				"Pokemon Species", "Stats", "Types"},
 		}
@@ -52,8 +50,8 @@ var pokemonCmd = &cobra.Command{
 			return
 		}
 
-		l := pokemon.GetList(result)
-		fmt.Println(l)
+		p := pokemon.GetList(result)
+		fmt.Println(p)
 	},
 }
 

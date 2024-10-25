@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/joshguarino/poketool/internal/berries"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
@@ -27,10 +28,32 @@ var berriesCmd = &cobra.Command{
 			return
 		}
 
-		fmt.Println(result)
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := berries.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		b := berries.GetList(result)
+		fmt.Println(b)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(berriesCmd)
+	berriesCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

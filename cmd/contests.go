@@ -1,6 +1,3 @@
-/*
-Copyright © 2024 Josh Guarino <jguarino722@gmail.com>
-*/
 package cmd
 
 import (
@@ -13,13 +10,7 @@ import (
 // contestsCmd represents the contests command
 var contestsCmd = &cobra.Command{
 	Use:   "contests",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#contests-section",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(contests.GetSuperContestEffect("1"))
 	},

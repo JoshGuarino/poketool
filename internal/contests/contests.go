@@ -2,34 +2,33 @@ package contests
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetContestType(nameOrId string) structs.ContestType {
+func GetContestType(nameOrId string) (structs.ContestType, error) {
 	contestType, err := pokeapi.ContestType(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest type", nameOrId)
+		return structs.ContestType{}, err
 	}
-	return contestType
+	return contestType, nil
 }
 
-func GetContetTypeList() structs.Resource {
+func GetContestTypeList() structs.Resource {
 	contestTypeList := internal.GetResourceList(contestTypeEndpoint)
 	return contestTypeList
 }
 
-func GetContestEffect(nameOrId string) structs.ContestEffect {
+func GetContestEffect(nameOrId string) (structs.ContestEffect, error) {
 	contestEffect, err := pokeapi.ContestEffect(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest type", nameOrId)
+		return structs.ContestEffect{}, err
 	}
-	return contestEffect
+	return contestEffect, nil
 }
 
 func GetContestEffectList() structs.Resource {
@@ -37,13 +36,13 @@ func GetContestEffectList() structs.Resource {
 	return contestEffectList
 }
 
-func GetSuperContestEffect(nameOrId string) structs.SuperContestEffect {
+func GetSuperContestEffect(nameOrId string) (structs.SuperContestEffect, error) {
 	superContestEffect, err := pokeapi.SuperContestEffect(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest type", nameOrId)
+		return structs.SuperContestEffect{}, err
 	}
-	return superContestEffect
+	return superContestEffect, nil
 }
 
 func GetSuperContestEffectList() structs.Resource {

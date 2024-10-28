@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/joshguarino/poketool/internal/contests"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
@@ -12,20 +13,43 @@ var contestsCmd = &cobra.Command{
 	Use:   "contests",
 	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#contests-section",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(contests.GetSuperContestEffect("1"))
+		// select prompt
+		prompt := promptui.Select{
+			Label: "Select berries group resource",
+			Items: []string{"Contest Type", "Contest Effect", "Super Contest Effect"},
+		}
+		_, result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := contests.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		c := contests.GetList(result)
+		fmt.Println(c)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(contestsCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// contestsCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// contestsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	contestsCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

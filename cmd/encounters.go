@@ -4,34 +4,52 @@ import (
 	"fmt"
 
 	"github.com/joshguarino/poketool/internal/encounters"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
 // encountersCmd represents the encounters command
 var encountersCmd = &cobra.Command{
 	Use:   "encounters",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#contests-section",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(encounters.GetEncounterCondition("1"))
+		// select prompt
+		prompt := promptui.Select{
+			Label: "Select berries group resource",
+			Items: []string{"Encounter Method", "Encounter Condition", "Encounter Condtiion Value"},
+		}
+		_, result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := encounters.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		e := encounters.GetList(result)
+		fmt.Println(e)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(encountersCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// encountersCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// encountersCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	encountersCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

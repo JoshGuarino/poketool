@@ -39,7 +39,7 @@ func GetBerryFirmnessList() structs.Resource {
 func GetBerryFlavor(nameOrId string) (structs.BerryFlavor, error) {
 	berryFlavor, err := pokeapi.BerryFlavor(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "berry firmness", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "berry flavor", nameOrId)
 		return structs.BerryFlavor{}, err
 	}
 	return berryFlavor, nil

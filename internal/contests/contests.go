@@ -25,7 +25,7 @@ func GetContestTypeList() structs.Resource {
 func GetContestEffect(nameOrId string) (structs.ContestEffect, error) {
 	contestEffect, err := pokeapi.ContestEffect(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest type", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest effect", nameOrId)
 		return structs.ContestEffect{}, err
 	}
 	return contestEffect, nil
@@ -39,7 +39,7 @@ func GetContestEffectList() structs.Resource {
 func GetSuperContestEffect(nameOrId string) (structs.SuperContestEffect, error) {
 	superContestEffect, err := pokeapi.SuperContestEffect(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest type", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "super contest effect", nameOrId)
 		return structs.SuperContestEffect{}, err
 	}
 	return superContestEffect, nil

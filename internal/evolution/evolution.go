@@ -2,20 +2,19 @@ package evolution
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetEvolutionChain(nameOrId string) structs.EvolutionChain {
+func GetEvolutionChain(nameOrId string) (structs.EvolutionChain, error) {
 	evolutionChain, err := pokeapi.EvolutionChain(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "evolution chain", nameOrId)
+		return structs.EvolutionChain{}, err
 	}
-	return evolutionChain
+	return evolutionChain, nil
 }
 
 func GetEvolutionChainList() structs.Resource {
@@ -23,13 +22,13 @@ func GetEvolutionChainList() structs.Resource {
 	return evolutionChainList
 }
 
-func GetEvolutionTrigger(nameOrId string) structs.EvolutionTrigger {
+func GetEvolutionTrigger(nameOrId string) (structs.EvolutionTrigger, error) {
 	evolutionTrigger, err := pokeapi.EvolutionTrigger(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	return evolutionTrigger
+	  fmt.Printf(internal.ErrorStringGetByNameOrId, "evolution trigger", nameOrId) 
+    return structs.EvolutionTrigger{}, err
+  }
+	return evolutionTrigger, nil
 }
 
 func GetEvolutionTriggerList() structs.Resource {

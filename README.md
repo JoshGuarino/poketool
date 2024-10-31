@@ -12,3 +12,9 @@ Poketool is go cli tool for looking up Pokémon data.
 - machines - in progress
 - moves - in progress
 - pokemon - done for now
+
+### Todos
+- finish existing resource commands
+- add unique pokedex command 
+- revamp command output for resource commands 
+- add testing

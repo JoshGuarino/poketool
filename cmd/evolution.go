@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/joshguarino/poketool/internal/evolution"
-  "github.com/manifoldco/promptui"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
@@ -19,7 +19,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-    // select prompt
+		// select prompt
 		prompt := promptui.Select{
 			Label: "Select berries group resource",
 			Items: []string{"Evolution Chain", "Evolution Trigger"},

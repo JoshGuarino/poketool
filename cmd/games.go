@@ -2,7 +2,8 @@ package cmd
 
 import (
 	"fmt"
-
+  "github.com/joshguarino/poketool/internal/games"
+  "github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
@@ -10,27 +11,44 @@ import (
 var gamesCmd = &cobra.Command{
 	Use:   "games",
 	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("games called")
+	// select prompt
+		prompt := promptui.Select{
+			Label: "Select berries group resource",
+			Items: []string{"Generation", "Pokedex", "Version", "Version Group"},
+		}
+		_, result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := games.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		g := games.GetList(result)
+		fmt.Println(g)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(gamesCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// gamesCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// gamesCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	gamesCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

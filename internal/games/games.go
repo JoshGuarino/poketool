@@ -2,20 +2,19 @@ package games
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetGeneration(nameOrId string) structs.Generation {
+func GetGeneration(nameOrId string) (structs.Generation, error) {
 	generation, err := pokeapi.Generation(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		return structs.Generation{}, err
 	}
-	return generation
+	return generation, nil
 }
 
 func GetGenerationList() structs.Resource {
@@ -23,13 +22,13 @@ func GetGenerationList() structs.Resource {
 	return generationList
 }
 
-func GetPokedex(nameOrId string) structs.Pokedex {
+func GetPokedex(nameOrId string) (structs.Pokedex, error) {
 	pokedex, err := pokeapi.Pokedex(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokedex", nameOrId)
+    return structs.Pokedex{}, err
 	}
-	return pokedex
+	return pokedex, nil
 }
 
 func GetPokedexList() structs.Resource {
@@ -37,13 +36,13 @@ func GetPokedexList() structs.Resource {
 	return pokedexList
 }
 
-func GetVersion(nameOrId string) structs.Version {
+func GetVersion(nameOrId string) (structs.Version, error) {
 	version, err := pokeapi.Version(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "version", nameOrId)
+    return structs.Version{}, err
 	}
-	return version
+	return version, nil
 }
 
 func GetVersionList() structs.Resource {
@@ -51,13 +50,13 @@ func GetVersionList() structs.Resource {
 	return versionList
 }
 
-func GetVersionGroup(nameOrId string) structs.VersionGroup {
+func GetVersionGroup(nameOrId string) (structs.VersionGroup, error) {
 	versionGroup, err := pokeapi.VersionGroup(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	return versionGroup
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "version group", nameOrId)
+    return structs.VersionGroup{}, err
+  }
+	return versionGroup, nil
 }
 
 func GetVersionGroupList() structs.Resource {

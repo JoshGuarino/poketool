@@ -18,3 +18,4 @@ Poketool is go cli tool for looking up Pokémon data.
 - add unique pokedex command 
 - revamp command output for resource commands 
 - add testing
+- add output to file functionality

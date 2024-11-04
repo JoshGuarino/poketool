@@ -15,7 +15,7 @@ var evolutionCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// select prompt
 		prompt := promptui.Select{
-			Label: "Select berries group resource",
+			Label: "Select evolution group resource",
 			Items: []string{"Evolution Chain", "Evolution Trigger"},
 		}
 		_, result, err := prompt.Run()

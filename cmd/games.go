@@ -14,7 +14,7 @@ var gamesCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 	// select prompt
 		prompt := promptui.Select{
-			Label: "Select berries group resource",
+			Label: "Select games group resource",
 			Items: []string{"Generation", "Pokedex", "Version", "Version Group"},
 		}
 		_, result, err := prompt.Run()

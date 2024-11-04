@@ -15,7 +15,7 @@ var encountersCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// select prompt
 		prompt := promptui.Select{
-			Label: "Select berries group resource",
+			Label: "Select encounters group resource",
 			Items: []string{"Encounter Method", "Encounter Condition", "Encounter Condtiion Value"},
 		}
 		_, result, err := prompt.Run()

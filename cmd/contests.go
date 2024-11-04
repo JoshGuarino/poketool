@@ -15,7 +15,7 @@ var contestsCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// select prompt
 		prompt := promptui.Select{
-			Label: "Select berries group resource",
+			Label: "Select contests group resource",
 			Items: []string{"Contest Type", "Contest Effect", "Super Contest Effect"},
 		}
 		_, result, err := prompt.Run()

@@ -3,34 +3,52 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/joshguarino/poketool/internal/items"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
 // itemsCmd represents the items command
 var itemsCmd = &cobra.Command{
 	Use:   "items",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#items-section",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("items called")
+// select prompt
+		prompt := promptui.Select{
+			Label: "Select items group resource",
+			Items: []string{"Item", "Item Attribute", "Item Category", "Item Fling Effect", "Item Pocket"},
+		}
+		_, result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := items.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		i := items.GetList(result)
+		fmt.Println(i)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(itemsCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// itemsCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// itemsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(itemsCmd) 
+	itemsCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

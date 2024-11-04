@@ -12,7 +12,7 @@ func GetList(result string) structs.Resource {
 		return GetVersionList()
 	case "Version Group":
     return GetVersionGroupList()
-}
+  }
 
 	return structs.Resource{}
 }
@@ -27,7 +27,7 @@ func GetSpecific(result string, search string) (interface{}, error) {
     return GetVersion(search)
 	case "Version Group":
     return GetVersionGroup(search)
-}
+  }
 
 	return "", nil
 }

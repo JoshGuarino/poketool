@@ -10,7 +10,7 @@ import (
 // gamesCmd represents the games command
 var gamesCmd = &cobra.Command{
 	Use:   "games",
-	Short: "A brief description of your command",
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#games-section",
 	Run: func(cmd *cobra.Command, args []string) {
 	// select prompt
 		prompt := promptui.Select{

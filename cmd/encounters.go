@@ -11,7 +11,7 @@ import (
 // encountersCmd represents the encounters command
 var encountersCmd = &cobra.Command{
 	Use:   "encounters",
-	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#contests-section",
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#encounters-section",
 	Run: func(cmd *cobra.Command, args []string) {
 		// select prompt
 		prompt := promptui.Select{

@@ -3,34 +3,52 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/joshguarino/poketool/internal/locations"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
 // locationsCmd represents the locations command
 var locationsCmd = &cobra.Command{
 	Use:   "locations",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#locations-section",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("locations called")
+		// select prompt
+		prompt := promptui.Select{
+			Label: "Select locations group resource",
+			Items: []string{"Location", "Location Area", "Pal Park Area", "Region"},
+		}
+		_, result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := locations.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		l := locations.GetList(result)
+		fmt.Println(l)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(locationsCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// locationsCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// locationsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	locationsCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

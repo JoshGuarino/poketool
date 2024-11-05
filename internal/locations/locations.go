@@ -2,20 +2,19 @@ package locations
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetLocation(nameOrId string) structs.Location {
+func GetLocation(nameOrId string) (structs.Location, error) {
 	location, err := pokeapi.Location(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		return structs.Location{}, err
 	}
-	return location
+	return location, nil
 }
 
 func GetLocationList() structs.Resource {
@@ -23,13 +22,13 @@ func GetLocationList() structs.Resource {
 	return locationList
 }
 
-func GetLocationArea(nameOrId string) structs.LocationArea {
+func GetLocationArea(nameOrId string) (structs.LocationArea, error) {
 	locationArea, err := pokeapi.LocationArea(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		return structs.LocationArea{}, err
 	}
-	return locationArea
+	return locationArea, nil
 }
 
 func GetLocationAreaList() structs.Resource {
@@ -37,13 +36,13 @@ func GetLocationAreaList() structs.Resource {
 	return locationAreaList
 }
 
-func GetPalParkArea(nameOrId string) structs.PalParkArea {
+func GetPalParkArea(nameOrId string) (structs.PalParkArea, error) {
 	palParkArea, err := pokeapi.PalParkArea(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		return structs.PalParkArea{}, err
 	}
-	return palParkArea
+	return palParkArea, nil
 }
 
 func GetPalParkAreaList() structs.Resource {
@@ -51,13 +50,13 @@ func GetPalParkAreaList() structs.Resource {
 	return palParkAreaList
 }
 
-func GetRegion(nameOrId string) structs.Region {
+func GetRegion(nameOrId string) (structs.Region, error) {
 	region, err := pokeapi.Region(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		return structs.Region{}, err
 	}
-	return region
+	return region, err
 }
 
 func GetRegionList() structs.Resource {

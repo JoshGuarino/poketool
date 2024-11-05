@@ -13,7 +13,7 @@ var itemsCmd = &cobra.Command{
 	Use:   "items",
 	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#items-section",
 	Run: func(cmd *cobra.Command, args []string) {
-// select prompt
+		// select prompt
 		prompt := promptui.Select{
 			Label: "Select items group resource",
 			Items: []string{"Item", "Item Attribute", "Item Category", "Item Fling Effect", "Item Pocket"},
@@ -49,6 +49,6 @@ var itemsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(itemsCmd) 
+	rootCmd.AddCommand(itemsCmd)
 	itemsCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

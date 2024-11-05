@@ -11,7 +11,7 @@ import (
 func GetItem(nameOrId string) (structs.Item, error) {
 	item, err := pokeapi.Item(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "item", nameOrId)
 		return structs.Item{}, err
 	}
 	return item, nil
@@ -25,7 +25,7 @@ func GetItemList() structs.Resource {
 func GetItemAttribute(nameOrId string) (structs.ItemAttribute, error) {
 	itemAttribute, err := pokeapi.ItemAttribute(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "item attribute", nameOrId)
 		return structs.ItemAttribute{}, err
 	}
 	return itemAttribute, nil
@@ -39,7 +39,7 @@ func GetItemAttributeList() structs.Resource {
 func GetItemCategory(nameOrId string) (structs.ItemCategory, error) {
 	itemCategory, err := pokeapi.ItemCategory(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "item category", nameOrId)
 		return structs.ItemCategory{}, err
 	}
 	return itemCategory, nil
@@ -53,7 +53,7 @@ func GetItemCategoryList() structs.Resource {
 func GetItemFlingEffect(nameOrId string) (structs.ItemFlingEffect, error) {
 	itemFlingEffect, err := pokeapi.ItemFlingEffect(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "item fling effect", nameOrId)
 		return structs.ItemFlingEffect{}, err
 	}
 	return itemFlingEffect, nil
@@ -67,7 +67,7 @@ func GetItemFlingEffectList() structs.Resource {
 func GetItemPocket(nameOrId string) (structs.ItemPocket, error) {
 	itemPocket, err := pokeapi.ItemPocket(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "item pocket", nameOrId)
 		return structs.ItemPocket{}, err
 	}
 	return itemPocket, nil

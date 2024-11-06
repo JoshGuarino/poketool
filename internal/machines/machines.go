@@ -2,20 +2,19 @@ package machines
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetMachine(nameOrId string) structs.Machine {
+func GetMachine(nameOrId string) (structs.Machine, error) {
 	Machine, err := pokeapi.Machine(nameOrId)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		return structs.Machine{}, err
 	}
-	return Machine
+	return Machine, nil
 }
 
 func GetMachineList() structs.Resource {

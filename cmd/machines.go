@@ -3,34 +3,52 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/joshguarino/poketool/internal/machines"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
 // machinesCmd represents the machines command
 var machinesCmd = &cobra.Command{
 	Use:   "machines",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#locations-section",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("machines called")
+		// select prompt
+		prompt := promptui.Select{
+			Label: "Select machines group resource",
+			Items: []string{"Machine"},
+		}
+		_, result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			return
+		}
+		// flag to search for specific resource
+		if search {
+			// search prompt
+			prompt := promptui.Prompt{
+				Label: "Search",
+			}
+			search, err := prompt.Run()
+			if err != nil {
+				fmt.Printf("Prompt failed %v\n", err)
+				return
+			}
+
+			s, err := machines.GetSpecific(result, search)
+			if err != nil {
+				return
+			}
+			fmt.Println(s)
+			return
+		}
+
+		l := machines.GetList(result)
+		fmt.Println(l)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(machinesCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// machinesCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// machinesCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	machinesCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

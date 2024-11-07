@@ -43,8 +43,8 @@ var machinesCmd = &cobra.Command{
 			return
 		}
 
-		l := machines.GetList(result)
-		fmt.Println(l)
+		m := machines.GetList(result)
+		fmt.Println(m)
 	},
 }
 

@@ -11,7 +11,7 @@ import (
 func GetMachine(nameOrId string) (structs.Machine, error) {
 	Machine, err := pokeapi.Machine(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "machine", nameOrId)
 		return structs.Machine{}, err
 	}
 	return Machine, nil

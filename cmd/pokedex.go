@@ -20,4 +20,5 @@ var pokedexCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(pokedexCmd)
+	pokedexCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

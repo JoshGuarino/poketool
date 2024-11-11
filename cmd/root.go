@@ -13,6 +13,8 @@ import (
 
 var cfgFile string
 var search bool
+var outputToFile bool
+var outputFileType bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

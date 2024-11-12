@@ -3,7 +3,7 @@ Poketool is go cli tool for looking up Pokémon data.
 
 ### Resource list status
 - berries - some tests done
-- contests - needs tests
+- contests - some tests done 
 - encounters - needs tests
 - evolution - needs tests 
 - games - needs tests 

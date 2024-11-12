@@ -22,10 +22,10 @@ func GetContestTypeList() structs.Resource {
 	return contestTypeList
 }
 
-func GetContestEffect(nameOrId string) (structs.ContestEffect, error) {
-	contestEffect, err := pokeapi.ContestEffect(nameOrId)
+func GetContestEffect(id string) (structs.ContestEffect, error) {
+	contestEffect, err := pokeapi.ContestEffect(id)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest effect", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest effect", id)
 		return structs.ContestEffect{}, err
 	}
 	return contestEffect, nil
@@ -36,10 +36,10 @@ func GetContestEffectList() structs.Resource {
 	return contestEffectList
 }
 
-func GetSuperContestEffect(nameOrId string) (structs.SuperContestEffect, error) {
-	superContestEffect, err := pokeapi.SuperContestEffect(nameOrId)
+func GetSuperContestEffect(id string) (structs.SuperContestEffect, error) {
+	superContestEffect, err := pokeapi.SuperContestEffect(id)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "super contest effect", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "super contest effect", id)
 		return structs.SuperContestEffect{}, err
 	}
 	return superContestEffect, nil

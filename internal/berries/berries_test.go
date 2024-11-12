@@ -5,19 +5,13 @@ import (
 	"testing"
 )
 
-func TestGetBerryId(t *testing.T) {
-	result, _ := GetBerry("1")
-	assert.Equal(t, "cheri", result.Name, "Expected to receive Cheri.")
-}
-
-func TestGetBerryByName(t *testing.T) {
-	result, _ := GetBerry("cheri")
-	assert.Equal(t, "cheri", result.Name, "Expected to receive Cheri.")
-}
-
-func TestGetBerryFail(t *testing.T) {
-	result, _ := GetBerry("test")
-	assert.Equal(t, "", result.Name, "Expected to receive an empty result.")
+func TestGetBerry(t *testing.T) {
+	rById, _ := GetBerry("1")
+	rByName, _ := GetBerry("cheri")
+	rFail, _ := GetBerry("test")
+	assert.Equal(t, "cheri", rById.Name, "Expected to receive Cheri.")
+	assert.Equal(t, "cheri", rByName.Name, "Expected to receive Cheri.")
+	assert.Equal(t, "", rFail.Name, "Expected to receive an empty result.")
 }
 
 func TestGetBerryList(t *testing.T) {
@@ -26,18 +20,12 @@ func TestGetBerryList(t *testing.T) {
 }
 
 func TestGetBerryFirmness(t *testing.T) {
-	result, _ := GetBerryFirmness("1")
-	assert.Equal(t, "very-soft", result.Name, "Expected to receive Very Soft.")
-}
-
-func TestGetBerryFirmnessByName(t *testing.T) {
-	result, _ := GetBerryFirmness("very-soft")
-	assert.Equal(t, "very-soft", result.Name, "Expected to receive Very Soft.")
-}
-
-func TestGetBerryFirmnessFail(t *testing.T) {
-	result, _ := GetBerryFirmness("test")
-	assert.Equal(t, "", result.Name, "Expected to receive an empty result.")
+	rById, _ := GetBerryFirmness("1")
+	rByName, _ := GetBerryFirmness("very-soft")
+	rFail, _ := GetBerryFirmness("test")
+	assert.Equal(t, "very-soft", rById.Name, "Expected to receive Very Soft.")
+	assert.Equal(t, "very-soft", rByName.Name, "Expected to receive Very Soft.")
+	assert.Equal(t, "", rFail.Name, "Expected to receive an empty result.")
 }
 
 func TestGetBerryFirmnessList(t *testing.T) {
@@ -46,18 +34,12 @@ func TestGetBerryFirmnessList(t *testing.T) {
 }
 
 func TestGetBerryFlavor(t *testing.T) {
-	result, _ := GetBerryFlavor("1")
-	assert.Equal(t, "spicy", result.Name, "Expected to receive Spicy.")
-}
-
-func TestGetBerryFlavorByName(t *testing.T) {
-	result, _ := GetBerryFlavor("spicy")
-	assert.Equal(t, "spicy", result.Name, "Expected to receive Spicy.")
-}
-
-func TestGetBerryFlavorFail(t *testing.T) {
-	result, _ := GetBerryFlavor("test")
-	assert.Equal(t, "", result.Name, "Expected to receive an empty result.")
+	rById, _ := GetBerryFlavor("1")
+	rByName, _ := GetBerryFlavor("spicy")
+	rFail, _ := GetBerryFlavor("test")
+	assert.Equal(t, "spicy", rById.Name, "Expected to receive Spicy.")
+	assert.Equal(t, "spicy", rByName.Name, "Expected to receive Spicy.")
+	assert.Equal(t, "", rFail.Name, "Expected to receive an empty result.")
 }
 
 func TestGetBerryFlavorList(t *testing.T) {

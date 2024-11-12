@@ -2,16 +2,16 @@
 Poketool is go cli tool for looking up Pokémon data.
 
 ### Resource list status
-- berries - done for now
-- contests - done for now
-- encounters - done for now
-- evolution - done for now 
-- games - done for now
-- items - done for now 
-- locations - done for now
-- machines - done for now 
-- moves - done for now 
-- pokemon - done for now
+- berries - some tests done
+- contests - needs tests
+- encounters - needs tests
+- evolution - needs tests 
+- games - needs tests 
+- items - needs tests 
+- locations - needs tests 
+- machines - needs tests 
+- moves - needs tests
+- pokemon - needs tests
 
 ### Todos
 - add unique pokedex command 

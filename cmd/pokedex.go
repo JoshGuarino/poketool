@@ -1,6 +1,3 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -20,5 +17,4 @@ var pokedexCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(pokedexCmd)
-	pokedexCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
 }

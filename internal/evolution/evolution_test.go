@@ -23,7 +23,7 @@ func TestGetEvolutionTrigger(t *testing.T) {
 	rByName, _ := GetEvolutionTrigger("level-up")
 	rFail, _ := GetEvolutionTrigger("test")
 	assert.Equal(t, "level-up", rById.Name, "Expected to receive 'level-up'.")
-	assert.Equal(t, "level-up", rByName.Name, "Expected to receive 'level'.")
+	assert.Equal(t, "level-up", rByName.Name, "Expected to receive 'level-up'.")
 	assert.Equal(t, "", rFail.Name, "Expected to receive an empty result.")
 }
 

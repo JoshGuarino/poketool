@@ -8,10 +8,10 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetEvolutionChain(nameOrId string) (structs.EvolutionChain, error) {
-	evolutionChain, err := pokeapi.EvolutionChain(nameOrId)
+func GetEvolutionChain(id string) (structs.EvolutionChain, error) {
+	evolutionChain, err := pokeapi.EvolutionChain(id)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "evolution chain", nameOrId)
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "evolution chain", id)
 		return structs.EvolutionChain{}, err
 	}
 	return evolutionChain, nil
@@ -25,9 +25,9 @@ func GetEvolutionChainList() structs.Resource {
 func GetEvolutionTrigger(nameOrId string) (structs.EvolutionTrigger, error) {
 	evolutionTrigger, err := pokeapi.EvolutionTrigger(nameOrId)
 	if err != nil {
-	  fmt.Printf(internal.ErrorStringGetByNameOrId, "evolution trigger", nameOrId) 
-    return structs.EvolutionTrigger{}, err
-  }
+		fmt.Printf(internal.ErrorStringGetByNameOrId, "evolution trigger", nameOrId)
+		return structs.EvolutionTrigger{}, err
+	}
 	return evolutionTrigger, nil
 }
 

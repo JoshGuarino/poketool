@@ -44,5 +44,5 @@ func TestGetEncounterConditionValue(t *testing.T) {
 
 func TestGetEncounterConditionValueList(t *testing.T) {
 	r := GetEncounterConditionValueList()
-	assert.Equal(t, "swarm-yes", r.Results[0].Name, "Expected to have a list of 'encounter condition' resource.")
+	assert.Equal(t, "swarm-yes", r.Results[0].Name, "Expected to have a list of 'encounter condition value' resource.")
 }

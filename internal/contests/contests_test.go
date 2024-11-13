@@ -34,8 +34,8 @@ func TestGetContestEffectList(t *testing.T) {
 func TestGetSuperContestEffect(t *testing.T) {
 	rById, _ := GetSuperContestEffect("1")
 	rFail, _ := GetSuperContestEffect("test")
-	assert.Equal(t, 1, rById.ID, "Expect to receive Cool.")
-	assert.Equal(t, 0, rFail.ID, "Expect to receive Cool.")
+	assert.Equal(t, 1, rById.ID, "Expect to receive contest effect with id of 1.")
+	assert.Equal(t, 0, rFail.ID, "Expect to receive and empty result.")
 }
 
 func TestGetSuperContestEffectList(t *testing.T) {

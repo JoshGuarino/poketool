@@ -17,7 +17,7 @@ var pokemonCmd = &cobra.Command{
 		// select prompt
 		prompt := promptui.Select{
 			Label: "Select pokemon group resource",
-			Items: []string{"Abilities", "Characteristics", "Egg groups", "Genders", "Growth Rate", "Natures",
+			Items: []string{"Abilities", "Characteristics", "Egg Groups", "Genders", "Growth Rates", "Natures",
 				"Pokeathlon Stats", "Pokemon", "Pokemon Colors", "Pokemon Forms", "Pokemon Habitats", "Pokemon Shapes",
 				"Pokemon Species", "Stats", "Types"},
 		}

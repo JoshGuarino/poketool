@@ -34,11 +34,3 @@ func GetResourceList(url string) structs.Resource {
 	json.Unmarshal(body, &resourceList)
 	return resourceList
 }
-
-func GetPokemonLocationAreas(nameOrId string) []LocationAreaEncounter {
-	url := PokeApiBaseUrl + "/pokemon/" + nameOrId + "/encounters"
-	body := Get(url)
-	pokemonLocationAreas := []LocationAreaEncounter{}
-	json.Unmarshal(body, &pokemonLocationAreas)
-	return pokemonLocationAreas
-}

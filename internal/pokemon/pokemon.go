@@ -1,6 +1,7 @@
 package pokemon
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/joshguarino/poketool/internal"
@@ -120,8 +121,12 @@ func GetPokemonList() structs.Resource {
 	return pokemonList
 }
 
+// edge case for this particular Resource/endpoint
 func GetPokemonLocationAreas(nameOrId string) []internal.LocationAreaEncounter {
-	pokemonLocationAreas := internal.GetPokemonLocationAreas(nameOrId)
+	url := pokemonEndpoint + "/" + nameOrId + "/encounters"
+	body := internal.Get(url)
+	pokemonLocationAreas := []internal.LocationAreaEncounter{}
+	json.Unmarshal(body, &pokemonLocationAreas)
 	return pokemonLocationAreas
 }
 

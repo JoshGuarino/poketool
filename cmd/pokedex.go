@@ -9,7 +9,7 @@ import (
 // pokedexCmd represents the pokedex command
 var pokedexCmd = &cobra.Command{
 	Use:   "pokedex",
-	Short: "Search and display pokemon data in pokedex form",
+	Short: "Search and display pokemon data like a real pokedex",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("pokedex called")
 	},

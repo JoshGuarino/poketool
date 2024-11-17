@@ -121,7 +121,6 @@ func GetPokemonList() structs.Resource {
 	return pokemonList
 }
 
-// edge case for this particular Resource/endpoint
 func GetPokemonLocationAreas(nameOrId string) []internal.LocationAreaEncounter {
 	url := pokemonEndpoint + "/" + nameOrId + "/encounters"
 	body := internal.Get(url)

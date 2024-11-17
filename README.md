@@ -11,7 +11,7 @@ Poketool is go cli tool for looking up Pokémon data.
 - locations - tests done 
 - machines - tests done 
 - moves - tests done 
-- pokemon - needs tests
+- pokemon - tests done
 
 ### Todos
 - add unique pokedex command 
@@ -19,3 +19,4 @@ Poketool is go cli tool for looking up Pokémon data.
 - add testing - in progress
 - add output to file functionality
 - possibly reimpment pokeapi-go in this repo as its 4 years old and not sure how reliable it is
+- add support for pagination resource list exploring

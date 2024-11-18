@@ -2,7 +2,6 @@ package internal
 
 import (
 	"encoding/json"
-	"encoding/xml"
 	"os"
 
 	"gopkg.in/yaml.v3"

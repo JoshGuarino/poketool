@@ -2,6 +2,7 @@ package internal
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"os"
 
 	"gopkg.in/yaml.v3"
@@ -35,6 +36,8 @@ func WriteXML(data interface{}, outputDir string, outputName string) {
 		panic(err)
 	}
 	defer file.Close()
+	xml, _ := xml.MarshalIndent(data, "", " ")
+	file.Write(xml)
 }
 
 func WriteCSV(data interface{}, outputDir string, outputName string) {

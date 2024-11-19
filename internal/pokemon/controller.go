@@ -26,7 +26,7 @@ func GetList(result string) structs.Resource {
 		return GetPokemonColorList()
 	case "Pokemon Forms":
 		return GetPokemonFormList()
-	case "pokemon Habitats":
+	case "Pokemon Habitats":
 		return GetPokemonHabitatList()
 	case "Pokemon Shapes":
 		return GetPokemonShapeList()
@@ -63,7 +63,7 @@ func GetSpecific(result string, search string) (interface{}, error) {
 		return GetPokemonColor(search)
 	case "Pokemon Forms":
 		return GetPokemonForm(search)
-	case "pokemon Habitats":
+	case "Pokemon Habitats":
 		return GetPokemonHabitat(search)
 	case "Pokemon Shapes":
 		return GetPokemonShape(search)

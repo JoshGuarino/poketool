@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
+	"github.com/joshguarino/poketool/internal"
 	"github.com/joshguarino/poketool/internal/pokemon"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
@@ -48,7 +50,10 @@ var pokemonCmd = &cobra.Command{
 		}
 
 		p := pokemon.GetList(result)
-		fmt.Println(p)
+		// fmt.Println(p)
+		dir, _ := os.Getwd()
+		internal.WriteJSON(p, dir, "test")
+		internal.WriteYAML(p, dir, "test")
 	},
 }
 

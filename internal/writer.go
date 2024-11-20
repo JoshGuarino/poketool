@@ -36,8 +36,9 @@ func WriteXML(data interface{}, outputDir string, outputName string) {
 		panic(err)
 	}
 	defer file.Close()
-	xml, _ := xml.MarshalIndent(data, "", " ")
-	file.Write(xml)
+	encoder := xml.NewEncoder(file)
+	encoder.Indent("", " ")
+	encoder.Encode(data)
 }
 
 func WriteCSV(data interface{}, outputDir string, outputName string) {

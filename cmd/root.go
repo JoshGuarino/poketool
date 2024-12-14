@@ -21,9 +21,7 @@ var rootCmd = &cobra.Command{
 	Use:   "poketool",
 	Short: "Poketool is go cli tool for looking up Pokémon data.",
 	Long:  ``,
-	Run: func(cmd *cobra.Command, args []string) {
-
-	},
+	// Run: func(cmd *cobra.Command, args []string) {},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

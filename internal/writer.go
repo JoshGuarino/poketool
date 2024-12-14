@@ -8,8 +8,18 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+func ensureDirectoryExists(dirPath string) {
+	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
+		err := os.MkdirAll(dirPath, 0755)
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
 func WriteJSON(data interface{}, outputDir string, outputName string) {
-	file, err := os.Create(outputName + ".json")
+	ensureDirectoryExists(outputDir)
+	file, err := os.Create(outputDir + "/" + outputName + ".json")
 	if err != nil {
 		panic(err)
 	}
@@ -21,7 +31,8 @@ func WriteJSON(data interface{}, outputDir string, outputName string) {
 }
 
 func WriteYAML(data interface{}, outputDir string, outputName string) {
-	file, err := os.Create(outputName + ".yaml")
+	ensureDirectoryExists(outputDir)
+	file, err := os.Create(outputDir + "/" + outputName + ".yaml")
 	if err != nil {
 		panic(err)
 	}
@@ -31,7 +42,8 @@ func WriteYAML(data interface{}, outputDir string, outputName string) {
 }
 
 func WriteXML(data interface{}, outputDir string, outputName string) {
-	file, err := os.Create(outputName + ".xml")
+	ensureDirectoryExists(outputDir)
+	file, err := os.Create(outputDir + "/" + outputName + ".xml")
 	if err != nil {
 		panic(err)
 	}

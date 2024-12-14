@@ -40,11 +40,3 @@ func WriteXML(data interface{}, outputDir string, outputName string) {
 	encoder.Indent("", " ")
 	encoder.Encode(data)
 }
-
-func WriteCSV(data interface{}, outputDir string, outputName string) {
-	file, err := os.Create(outputName + ".csv")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-}

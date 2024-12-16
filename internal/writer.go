@@ -8,6 +8,20 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+func WriteFile(fileType string, data interface{}, outputDir string, outputName string) {
+	switch fileType {
+	case "JSON":
+		WriteJSON(data, outputDir, outputName)
+		return
+	case "YAML":
+		WriteYAML(data, outputDir, outputName)
+		return
+	case "XML":
+		WriteXML(data, outputDir, outputName)
+		return
+	}
+}
+
 func ensureDirectoryExists(dirPath string) {
 	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
 		err := os.MkdirAll(dirPath, 0755)

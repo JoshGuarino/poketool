@@ -26,22 +26,19 @@ var pokemonCmd = &cobra.Command{
 
 		// flag to search for specific resource
 		if search {
-			prompt := internal.CreateSearchPrompt()
-			search := internal.RunSearchPrompt(prompt)
+			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
 			s, err := pokemon.GetSpecific(resourceGroup, search)
 			if err != nil {
 				return
 			}
+			internal.DecideToOutputFileOrNot(outputToFile, s, resourceGroup)
 			fmt.Println(s)
 			return
 		}
 
+		// if not searching for we return a paginated list
 		p := pokemon.GetList(resourceGroup)
-		if outputToFile {
-			prompt := internal.CreateFileOutputPrompt()
-			fileType := internal.RunSelectPrompt(prompt)
-			internal.WriteFile(fileType, p, "test", "test")
-		}
+		internal.DecideToOutputFileOrNot(outputToFile, p, resourceGroup)
 		fmt.Println(p)
 	},
 }

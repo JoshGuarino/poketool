@@ -39,3 +39,10 @@ func RunSearchPrompt(prompt promptui.Prompt) string {
 	}
 	return search
 }
+
+func DecideToOutputFileOrNot(outputToFile bool, data interface{}, filename string) {
+	if outputToFile {
+		fileType := RunSelectPrompt(CreateFileOutputPrompt())
+		WriteFile(fileType, data, "test", filename)
+	}
+}

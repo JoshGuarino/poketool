@@ -14,7 +14,6 @@ import (
 var cfgFile string
 var search bool
 var outputToFile bool
-var outputFileType bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -35,7 +34,6 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.Flags().BoolVarP(&outputToFile, "output", "o", false, "Output data to file")
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,

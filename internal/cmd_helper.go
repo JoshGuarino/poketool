@@ -24,10 +24,18 @@ func CreateFileOutputPrompt() promptui.Select {
 	}
 }
 
-func RunOutputFileProtocol(prompt promptui.Select) string {
+func RunSelectPrompt(prompt promptui.Select) string {
 	_, result, err := prompt.Run()
 	if err != nil {
 		panic(err)
 	}
 	return result
+}
+
+func RunSearchPrompt(prompt promptui.Prompt) string {
+	search, err := prompt.Run()
+	if err != nil {
+		panic(err)
+	}
+	return search
 }

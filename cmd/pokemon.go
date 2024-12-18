@@ -20,26 +20,31 @@ var pokemonCmd = &cobra.Command{
 	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#pokemon-section",
 	Run: func(cmd *cobra.Command, args []string) {
 
+		// generic data holder struct
+		data := internal.Data[interface{}]{}
+
 		// select prompt
 		prompt := internal.CreateListPrompt("Select pokemon resource group", resourceGroups)
 		resourceGroup := internal.RunSelectPrompt(prompt)
 
-		// flag to search for specific resource
+		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
 			s, err := pokemon.GetSpecific(resourceGroup, search)
 			if err != nil {
 				return
 			}
-			internal.DecideToOutputFileOrNot(outputToFile, s, resourceGroup)
-			fmt.Println(s)
-			return
+			data.Data = s
+		} else {
+			p := pokemon.GetList(resourceGroup)
+			data.Data = p
 		}
 
-		// if not searching for we return a paginated list
-		p := pokemon.GetList(resourceGroup)
-		internal.DecideToOutputFileOrNot(outputToFile, p, resourceGroup)
-		fmt.Println(p)
+		// create file if output flag exists
+		if outputToFile {
+			internal.OutputToFile(data.Data, resourceGroup)
+		}
+		fmt.Println(data.Data)
 	},
 }
 

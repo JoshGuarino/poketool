@@ -4,6 +4,10 @@ import (
 	"github.com/manifoldco/promptui"
 )
 
+type Data[T any] struct {
+	Data T
+}
+
 func CreateListPrompt(label string, items []string) promptui.Select {
 	return promptui.Select{
 		Label: label,
@@ -40,9 +44,7 @@ func RunSearchPrompt(prompt promptui.Prompt) string {
 	return search
 }
 
-func DecideToOutputFileOrNot(outputToFile bool, data interface{}, filename string) {
-	if outputToFile {
-		fileType := RunSelectPrompt(CreateFileOutputPrompt())
-		WriteFile(fileType, data, "test", filename)
-	}
+func OutputToFile(data interface{}, filename string) {
+	fileType := RunSelectPrompt(CreateFileOutputPrompt())
+	WriteFile(fileType, data, "test", filename)
 }

@@ -4,10 +4,6 @@ import (
 	"github.com/manifoldco/promptui"
 )
 
-type Data[T any] struct {
-	Data T
-}
-
 func CreateListPrompt(label string, items []string) promptui.Select {
 	return promptui.Select{
 		Label: label,

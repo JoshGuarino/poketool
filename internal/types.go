@@ -4,6 +4,10 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
+type Data[T any] struct {
+	Data T
+}
+
 type LocationAreaEncounter struct {
 	LocationArea  structs.Result           `json:"location_area"`
 	VersionDetail []VersionEncounterDetail `json:"version_details"`

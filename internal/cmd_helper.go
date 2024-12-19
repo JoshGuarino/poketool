@@ -42,5 +42,5 @@ func RunSearchPrompt(prompt promptui.Prompt) string {
 
 func OutputToFile(data interface{}, filename string) {
 	fileType := RunSelectPrompt(CreateFileOutputPrompt())
-	WriteFile(fileType, data, "test", filename)
+	WriteFile(fileType, data, "poketool_output", filename)
 }

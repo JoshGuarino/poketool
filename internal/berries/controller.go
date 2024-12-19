@@ -6,7 +6,7 @@ func GetList(result string) structs.Resource {
 	switch result {
 	case "Berries":
 		return GetBerryList()
-	case "Berry Firmness":
+	case "Berry Firmnesses":
 		return GetBerryFirmnessList()
 	case "Berry Flavors":
 		return GetBerryFlavorList()

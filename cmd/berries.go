@@ -32,8 +32,8 @@ var berriesCmd = &cobra.Command{
 			}
 			data.Data = s
 		} else {
-			p := berries.GetList(berriesGroup)
-			data.Data = p
+			b := berries.GetList(berriesGroup)
+			data.Data = b
 		}
 
 		// create file if output flag exists

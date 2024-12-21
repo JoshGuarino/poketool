@@ -32,8 +32,8 @@ var contestsCmd = &cobra.Command{
 			}
 			data.Data = s
 		} else {
-			p := contests.GetList(contestsGroup)
-			data.Data = p
+			c := contests.GetList(contestsGroup)
+			data.Data = c
 		}
 
 		// create file if output flag exists

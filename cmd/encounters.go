@@ -32,8 +32,8 @@ var encountersCmd = &cobra.Command{
 			}
 			data.Data = s
 		} else {
-			p := encounters.GetList(encountersGroup)
-			data.Data = p
+			e := encounters.GetList(encountersGroup)
+			data.Data = e
 		}
 
 		// create file if output flag exists

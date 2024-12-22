@@ -5,7 +5,6 @@ import (
 
 	"github.com/joshguarino/poketool/internal"
 	"github.com/joshguarino/poketool/internal/items"
-	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
@@ -48,4 +47,5 @@ var itemsCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(itemsCmd)
 	itemsCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
+	itemsCmd.Flags().BoolVarP(&outputToFile, "output", "o", false, "Output data to file")
 }

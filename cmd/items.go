@@ -3,48 +3,45 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/joshguarino/poketool/internal"
 	"github.com/joshguarino/poketool/internal/items"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
+
+var itemsGroups = []string{"Item", "Item Attribute", "Item Category", "Item Fling Effect", "Item Pocket"}
 
 // itemsCmd represents the items command
 var itemsCmd = &cobra.Command{
 	Use:   "items",
 	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#items-section",
 	Run: func(cmd *cobra.Command, args []string) {
+
+		// generic data holder struct
+		data := internal.Data[interface{}]{}
+
 		// select prompt
-		prompt := promptui.Select{
-			Label: "Select items group resource",
-			Items: []string{"Item", "Item Attribute", "Item Category", "Item Fling Effect", "Item Pocket"},
-		}
-		_, result, err := prompt.Run()
-		if err != nil {
-			fmt.Printf("Prompt failed %v\n", err)
-			return
-		}
-		// flag to search for specific resource
+		selectPrompt := internal.CreateListPrompt("Select itmes resource group", itemsGroups)
+		itemsGroup := internal.RunSelectPrompt(selectPrompt)
+
+		// flag to search for specific resource else return paginated list
 		if search {
-			// search prompt
-			prompt := promptui.Prompt{
-				Label: "Search",
-			}
-			search, err := prompt.Run()
-			if err != nil {
-				fmt.Printf("Prompt failed %v\n", err)
-				return
-			}
-
-			s, err := items.GetSpecific(result, search)
+			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
+			s, err := items.GetSpecific(itemsGroup, search)
 			if err != nil {
 				return
 			}
-			fmt.Println(s)
-			return
+			data.Data = s
+		} else {
+			i := items.GetList(itemsGroup)
+			data.Data = i
 		}
 
-		i := items.GetList(result)
-		fmt.Println(i)
+		// create file if output flag exists
+		if outputToFile {
+			internal.OutputToFile(data.Data, itemsGroup)
+		}
+		fmt.Println(data.Data)
 	},
 }
 

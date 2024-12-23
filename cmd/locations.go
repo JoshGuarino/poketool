@@ -3,52 +3,49 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/joshguarino/poketool/internal"
 	"github.com/joshguarino/poketool/internal/locations"
-	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
+
+var locationsGroups = []string{"Location", "Location Area", "Pal Park Area", "Region"}
 
 // locationsCmd represents the locations command
 var locationsCmd = &cobra.Command{
 	Use:   "locations",
 	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#locations-section",
 	Run: func(cmd *cobra.Command, args []string) {
+
+		// generic data holder struct
+		data := internal.Data[interface{}]{}
+
 		// select prompt
-		prompt := promptui.Select{
-			Label: "Select locations group resource",
-			Items: []string{"Location", "Location Area", "Pal Park Area", "Region"},
-		}
-		_, result, err := prompt.Run()
-		if err != nil {
-			fmt.Printf("Prompt failed %v\n", err)
-			return
-		}
-		// flag to search for specific resource
+		selectPrompt := internal.CreateListPrompt("Select locations resource group", locationsGroups)
+		locationsGroup := internal.RunSelectPrompt(selectPrompt)
+
+		// flag to search for specific resource else return paginated list
 		if search {
-			// search prompt
-			prompt := promptui.Prompt{
-				Label: "Search",
-			}
-			search, err := prompt.Run()
-			if err != nil {
-				fmt.Printf("Prompt failed %v\n", err)
-				return
-			}
-
-			s, err := locations.GetSpecific(result, search)
+			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
+			s, err := locations.GetSpecific(locationsGroup, search)
 			if err != nil {
 				return
 			}
-			fmt.Println(s)
-			return
+			data.Data = s
+		} else {
+			l := locations.GetList(locationsGroup)
+			data.Data = l
 		}
 
-		l := locations.GetList(result)
-		fmt.Println(l)
+		// create file if output flag exists
+		if outputToFile {
+			internal.OutputToFile(data.Data, locationsGroup)
+		}
+		fmt.Println(data.Data)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(locationsCmd)
 	locationsCmd.Flags().BoolVarP(&search, "search", "s", false, "Find specific resource")
+	locationsCmd.Flags().BoolVarP(&outputToFile, "output", "o", false, "Output data to file")
 }

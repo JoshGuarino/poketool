@@ -20,7 +20,7 @@ var itemsCmd = &cobra.Command{
 		data := internal.Data[interface{}]{}
 
 		// select prompt
-		selectPrompt := internal.CreateListPrompt("Select itmes resource group", itemsGroups)
+		selectPrompt := internal.CreateListPrompt("Select ietmes resource group", itemsGroups)
 		itemsGroup := internal.RunSelectPrompt(selectPrompt)
 
 		// flag to search for specific resource else return paginated list

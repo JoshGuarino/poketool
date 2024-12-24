@@ -13,7 +13,7 @@ var machinesGroups = []string{"Machine"}
 // machinesCmd represents the machines command
 var machinesCmd = &cobra.Command{
 	Use:   "machines",
-	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#locations-section",
+	Short: "Access pokemon resource group data from pokeapi: https://pokeapi.co/docs/v2#machines-section",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// generic data holder struct
@@ -32,8 +32,8 @@ var machinesCmd = &cobra.Command{
 			}
 			data.Data = s
 		} else {
-			l := machines.GetList(machinesGroup)
-			data.Data = l
+			m := machines.GetList(machinesGroup)
+			data.Data = m
 		}
 
 		// create file if output flag exists

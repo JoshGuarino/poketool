@@ -26,12 +26,3 @@ func TestFileOutputPrompt(t *testing.T) {
 	assert.Equal(t, []string{"JSON", "YAML", "XML"}, prompt.Items, "Expected prompt to have select items of 'JSON,YAML,XML'.")
 	assert.IsType(t, promptui.Select{}, prompt, "Expected to be instance of 'promptui.Select'.")
 }
-
-// func TestCreateListPrompt(t *testing.T) {
-// }
-//
-// func TestCreateListPrompt(t *testing.T) {
-// }
-//
-// func TestCreateListPrompt(t *testing.T) {
-// }

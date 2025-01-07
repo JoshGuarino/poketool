@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/joshguarino/poketool/internal"
-	"github.com/joshguarino/poketool/internal/contests"
+	"github.com/joshguarino/poketool/internal/resources/contests"
 	"github.com/spf13/cobra"
 )
 

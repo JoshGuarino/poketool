@@ -1,29 +1,31 @@
 package berries
 
-import "github.com/mtslzr/pokeapi-go/structs"
+import (
+	"github.com/mtslzr/pokeapi-go/structs"
+)
 
-func GetList(result string) structs.Resource {
+func (c Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Berries":
-		return GetBerryList()
+		return c.berries.GetBerryList()
 	case "Berry Firmnesses":
-		return GetBerryFirmnessList()
+		return c.berries.GetBerryFirmnessList()
 	case "Berry Flavors":
-		return GetBerryFlavorList()
+		return c.berries.GetBerryFlavorList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (c Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Berries":
-		return GetBerry(search)
+		return c.berries.GetBerry(search)
 	case "Berry Firmnesses":
-		return GetBerryFirmness(search)
+		return c.berries.GetBerryFirmness(search)
 	case "Berry Flavors":
-		return GetBerryFlavor(search)
+		return c.berries.GetBerryFlavor(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

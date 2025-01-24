@@ -8,6 +8,11 @@ type Data[T any] struct {
 	Data T
 }
 
+type IController interface {
+	GetList(result string) structs.Resource
+	GetSpecific(result string) (interface{}, error)
+}
+
 type LocationAreaEncounter struct {
 	LocationArea  structs.Result           `json:"location_area"`
 	VersionDetail []VersionEncounterDetail `json:"version_details"`

@@ -9,3 +9,5 @@ Poketool is go cli tool for looking up Pokémon data.
 - possibly switch to `https://github.com/charmbracelet/bubbletea` for terminal ui?
 - finish tests for resources by adding controller tests
 - resources restructure using interfaces for easier testing and mocking
+- add error handler for controllers
+- properly create mocks for tests instead of making network calls

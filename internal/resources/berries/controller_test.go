@@ -7,8 +7,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var c = Controller{berries: Berries{}}
+
 func TestGetList(t *testing.T) {
-	c := Controller{berries: Berries{}}
 	rBerries := c.GetList("Berries")
 	rFirmnesses := c.GetList("Berry Firmnesses")
 	rFlavors := c.GetList("Berry Flavors")
@@ -20,7 +21,6 @@ func TestGetList(t *testing.T) {
 }
 
 func TestGetSpecific(t *testing.T) {
-	c := Controller{berries: Berries{}}
 	rBerry, _ := c.GetSpecific("Berries", "1")
 	rFirmness, _ := c.GetSpecific("Berry Firmnesses", "1")
 	rFlavor, _ := c.GetSpecific("Berry Flavors", "1")

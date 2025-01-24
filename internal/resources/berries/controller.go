@@ -4,27 +4,27 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func (c Controller) GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Berries":
-		return c.berries.GetBerryList()
+		return controller.berries.GetBerryList()
 	case "Berry Firmnesses":
-		return c.berries.GetBerryFirmnessList()
+		return controller.berries.GetBerryFirmnessList()
 	case "Berry Flavors":
-		return c.berries.GetBerryFlavorList()
+		return controller.berries.GetBerryFlavorList()
 	}
 
 	return structs.Resource{}
 }
 
-func (c Controller) GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Berries":
-		return c.berries.GetBerry(search)
+		return controller.berries.GetBerry(search)
 	case "Berry Firmnesses":
-		return c.berries.GetBerryFirmness(search)
+		return controller.berries.GetBerryFirmness(search)
 	case "Berry Flavors":
-		return c.berries.GetBerryFlavor(search)
+		return controller.berries.GetBerryFlavor(search)
 	}
 
 	return nil, nil

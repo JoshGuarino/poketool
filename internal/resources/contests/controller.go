@@ -2,28 +2,28 @@ package contests
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Contest Type":
-		return GetContestTypeList()
+		return controller.contests.GetContestTypeList()
 	case "Contest Effect":
-		return GetContestEffectList()
+		return controller.contests.GetContestEffectList()
 	case "Super Contest Effect":
-		return GetSuperContestEffectList()
+		return controller.contests.GetSuperContestEffectList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Contest Type":
-		return GetContestType(search)
+		return controller.contests.GetContestType(search)
 	case "Contest Effect":
-		return GetContestEffect(search)
+		return controller.contests.GetContestEffect(search)
 	case "Super Contest Effect":
-		return GetSuperContestEffect(search)
+		return controller.contests.GetSuperContestEffect(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

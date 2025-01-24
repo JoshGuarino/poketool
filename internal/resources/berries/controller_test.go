@@ -13,7 +13,7 @@ func TestGetList(t *testing.T) {
 	rBerries := c.GetList("Berries")
 	rFirmnesses := c.GetList("Berry Firmnesses")
 	rFlavors := c.GetList("Berry Flavors")
-	rFail := c.GetList("")
+	rFail := c.GetList("test")
 	assert.IsType(t, structs.Resource{}, rBerries, "Expected to have type 'Resource' struct.")
 	assert.IsType(t, structs.Resource{}, rFirmnesses, "Expected to have type 'Resource' struct.")
 	assert.IsType(t, structs.Resource{}, rFlavors, "Expected to have type 'Resource' struct.")

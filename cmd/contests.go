@@ -19,6 +19,9 @@ var contestsCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of contests Controller
+		c := contests.Controller{}
+
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select contests resource group", contestsGroups)
 		contestsGroup := internal.RunSelectPrompt(selectPrompt)
@@ -26,13 +29,13 @@ var contestsCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := contests.GetSpecific(contestsGroup, search)
+			s, err := c.GetSpecific(contestsGroup, search)
 			if err != nil {
 				return
 			}
 			data.Data = s
 		} else {
-			c := contests.GetList(contestsGroup)
+			c := c.GetList(contestsGroup)
 			data.Data = c
 		}
 

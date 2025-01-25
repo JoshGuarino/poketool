@@ -10,7 +10,7 @@ type Data[T any] struct {
 
 type IController interface {
 	GetList(result string) structs.Resource
-	GetSpecific(result string) (interface{}, error)
+	GetSpecific(result string, search string) (interface{}, error)
 }
 
 type LocationAreaEncounter struct {

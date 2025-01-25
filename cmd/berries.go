@@ -20,7 +20,7 @@ var berriesCmd = &cobra.Command{
 		data := internal.Data[interface{}]{}
 
 		// declare instance of berries Controller
-		var c = berries.Controller{}
+		var c internal.IController = berries.Controller{}
 
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select berries resource group", berriesGroups)

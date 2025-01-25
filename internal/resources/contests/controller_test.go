@@ -3,11 +3,12 @@ package contests
 import (
 	"testing"
 
+	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go/structs"
 	"github.com/stretchr/testify/assert"
 )
 
-var controller = Controller{contests: Contests{}}
+var controller internal.IController = Controller{contests: Contests{}}
 
 func TestGetList(t *testing.T) {
 	rType := controller.GetList("Contest Type")

@@ -3,11 +3,12 @@ package berries
 import (
 	"testing"
 
+	"github.com/joshguarino/poketool/internal"
 	"github.com/mtslzr/pokeapi-go/structs"
 	"github.com/stretchr/testify/assert"
 )
 
-var controller = Controller{berries: Berries{}}
+var controller internal.IController = Controller{berries: Berries{}}
 
 func TestGetList(t *testing.T) {
 	rBerries := controller.GetList("Berries")

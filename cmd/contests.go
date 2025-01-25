@@ -20,7 +20,7 @@ var contestsCmd = &cobra.Command{
 		data := internal.Data[interface{}]{}
 
 		// declare instance of contests Controller
-		c := contests.Controller{}
+		var c internal.IController = contests.Controller{}
 
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select contests resource group", contestsGroups)

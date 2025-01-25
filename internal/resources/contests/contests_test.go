@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var contests = Contests{}
+var contests IContests = Contests{}
 
 func TestGetContestType(t *testing.T) {
 	rById, _ := contests.GetContestType("1")

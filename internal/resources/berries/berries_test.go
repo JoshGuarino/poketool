@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var berries = Berries{}
+var berries IBerries = Berries{}
 
 func TestGetBerry(t *testing.T) {
 	rById, _ := berries.GetBerry("1")

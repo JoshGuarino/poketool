@@ -2,28 +2,28 @@ package encounters
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Encounter Method":
-		return GetEncounterMethodList()
+		return controller.encounters.GetEncounterMethodList()
 	case "Encounter Condition":
-		return GetEncounterConditionList()
-	case "Encounter Condtiion Value":
-		return GetEncounterConditionValueList()
+		return controller.encounters.GetEncounterConditionList()
+	case "Encounter Condition Value":
+		return controller.encounters.GetEncounterConditionValueList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Encounter Method":
-		return GetEncounterMethod(search)
+		return controller.encounters.GetEncounterMethod(search)
 	case "Encounter Condition":
-		return GetEncounterCondition(search)
-	case "Encounter Condtiion Value":
-		return GetEncounterConditionValue(search)
+		return controller.encounters.GetEncounterCondition(search)
+	case "Encounter Condition Value":
+		return controller.encounters.GetEncounterConditionValue(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

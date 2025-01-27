@@ -15,9 +15,9 @@ func TestGetList(t *testing.T) {
 	rFirmnesses := controller.GetList("Berry Firmnesses")
 	rFlavors := controller.GetList("Berry Flavors")
 	rFail := controller.GetList("test")
-	assert.IsType(t, structs.Resource{}, rBerries, "Expected to have type 'Resource' struct.")
-	assert.IsType(t, structs.Resource{}, rFirmnesses, "Expected to have type 'Resource' struct.")
-	assert.IsType(t, structs.Resource{}, rFlavors, "Expected to have type 'Resource' struct.")
+	assert.IsType(t, []structs.Result{}, rBerries.Results, "Expected to have array of type 'Result' struct.")
+	assert.IsType(t, []structs.Result{}, rFirmnesses.Results, "Expected to have array of type 'Result' struct.")
+	assert.IsType(t, []structs.Result{}, rFlavors.Results, "Expected to have array of type 'Result' struct.")
 	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
 }
 

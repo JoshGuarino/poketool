@@ -38,6 +38,14 @@ func (th *TestHelper) teardown() {
 	os.RemoveAll(th.TestDir)
 }
 
+func TestWriteFile(t *testing.T) {
+	// implement this
+}
+
+func TestEnsureDirectoryExists(t *testing.T) {
+	// implement this
+}
+
 func TestWtiteJSON(t *testing.T) {
 	th.setup(t)
 	defer th.teardown()

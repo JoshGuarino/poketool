@@ -2,7 +2,7 @@ run:
 	go run main.go
 
 test: 
-	go test -cover ./internal/... ./cmd/...
+	go test -cover ./...
 
 tidy: 
 	go mod tidy

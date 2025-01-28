@@ -19,6 +19,9 @@ var evolutionCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of evolution Controller
+		var controller internal.IController = evolution.Controller{}
+
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select evolution resource group", evolutionGroups)
 		evolutionGroup := internal.RunSelectPrompt(selectPrompt)
@@ -26,14 +29,14 @@ var evolutionCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := evolution.GetSpecific(evolutionGroup, search)
+			resource, err := controller.GetSpecific(evolutionGroup, search)
 			if err != nil {
 				return
 			}
-			data.Data = s
+			data.Data = resource
 		} else {
-			e := evolution.GetList(evolutionGroup)
-			data.Data = e
+			list := controller.GetList(evolutionGroup)
+			data.Data = list
 		}
 
 		// create file if output flag exists

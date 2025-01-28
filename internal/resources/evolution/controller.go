@@ -2,24 +2,24 @@ package evolution
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Evolution Chain":
-		return GetEvolutionChainList()
+		return controller.evolution.GetEvolutionChainList()
 	case "Evolution Trigger":
-		return GetEvolutionTriggerList()
+		return controller.evolution.GetEvolutionTriggerList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Evolution Chain":
-		return GetEvolutionChain(search)
+		return controller.evolution.GetEvolutionChain(search)
 	case "Evolution Trigger":
-    return GetEvolutionTrigger(search)
+		return controller.evolution.GetEvolutionTrigger(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

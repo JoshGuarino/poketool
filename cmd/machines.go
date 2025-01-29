@@ -19,6 +19,9 @@ var machinesCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of machines Controller
+		var controller internal.IController = machines.Controller{}
+
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select machines resource group", machinesGroups)
 		machinesGroup := internal.RunSelectPrompt(selectPrompt)
@@ -26,14 +29,14 @@ var machinesCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := machines.GetSpecific(machinesGroup, search)
+			resource, err := controller.GetSpecific(machinesGroup, search)
 			if err != nil {
 				return
 			}
-			data.Data = s
+			data.Data = resource
 		} else {
-			m := machines.GetList(machinesGroup)
-			data.Data = m
+			list := controller.GetList(machinesGroup)
+			data.Data = list
 		}
 
 		// create file if output flag exists

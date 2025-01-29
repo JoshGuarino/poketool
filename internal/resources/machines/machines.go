@@ -8,7 +8,7 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetMachine(id string) (structs.Machine, error) {
+func (machines Machines) GetMachine(id string) (structs.Machine, error) {
 	Machine, err := pokeapi.Machine(id)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "machine", id)
@@ -17,7 +17,7 @@ func GetMachine(id string) (structs.Machine, error) {
 	return Machine, nil
 }
 
-func GetMachineList() structs.Resource {
+func (machines Machines) GetMachineList() structs.Resource {
 	machineList := internal.GetResourceList(machineEndpoint)
 	return machineList
 }

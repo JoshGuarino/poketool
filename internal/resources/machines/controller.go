@@ -2,20 +2,20 @@ package machines
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Machine":
-		return GetMachineList()
+		return controller.machines.GetMachineList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Machine":
-		return GetMachine(search)
+		return controller.machines.GetMachine(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

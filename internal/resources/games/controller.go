@@ -2,32 +2,32 @@ package games
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Generation":
-    return GetGenerationList()
+		return controller.games.GetGenerationList()
 	case "Pokedex":
-		return GetPokedexList()
+		return controller.games.GetPokedexList()
 	case "Version":
-		return GetVersionList()
+		return controller.games.GetVersionList()
 	case "Version Group":
-    return GetVersionGroupList()
-  }
+		return controller.games.GetVersionGroupList()
+	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
-  case "Generation":
-    return GetGeneration(search)
+	case "Generation":
+		return controller.games.GetGeneration(search)
 	case "Pokedex":
-    return GetPokedex(search)
+		return controller.games.GetPokedex(search)
 	case "Version":
-    return GetVersion(search)
+		return controller.games.GetVersion(search)
 	case "Version Group":
-    return GetVersionGroup(search)
-  }
+		return controller.games.GetVersionGroup(search)
+	}
 
-	return "", nil
+	return nil, nil
 }

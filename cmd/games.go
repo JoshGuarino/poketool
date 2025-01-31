@@ -19,6 +19,9 @@ var gamesCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of games Controller
+		var controller internal.IController = games.Controller{}
+
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select games resource group", gamesGroups)
 		gamesGroup := internal.RunSelectPrompt(selectPrompt)
@@ -26,14 +29,14 @@ var gamesCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := games.GetSpecific(gamesGroup, search)
+			resource, err := controller.GetSpecific(gamesGroup, search)
 			if err != nil {
 				return
 			}
-			data.Data = s
+			data.Data = resource
 		} else {
-			g := games.GetList(gamesGroup)
-			data.Data = g
+			list := controller.GetList(gamesGroup)
+			data.Data = list
 		}
 
 		// create file if output flag exists

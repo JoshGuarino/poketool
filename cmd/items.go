@@ -19,6 +19,9 @@ var itemsCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of berries Controller
+		var controller internal.IController = items.Controller{}
+
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select ietmes resource group", itemsGroups)
 		itemsGroup := internal.RunSelectPrompt(selectPrompt)
@@ -26,14 +29,14 @@ var itemsCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := items.GetSpecific(itemsGroup, search)
+			resource, err := controller.GetSpecific(itemsGroup, search)
 			if err != nil {
 				return
 			}
-			data.Data = s
+			data.Data = resource
 		} else {
-			i := items.GetList(itemsGroup)
-			data.Data = i
+			list := controller.GetList(itemsGroup)
+			data.Data = list
 		}
 
 		// create file if output flag exists

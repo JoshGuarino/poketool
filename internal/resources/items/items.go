@@ -8,7 +8,7 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetItem(nameOrId string) (structs.Item, error) {
+func (items Items) GetItem(nameOrId string) (structs.Item, error) {
 	item, err := pokeapi.Item(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "item", nameOrId)
@@ -17,12 +17,12 @@ func GetItem(nameOrId string) (structs.Item, error) {
 	return item, nil
 }
 
-func GetItemList() structs.Resource {
+func (items Items) GetItemList() structs.Resource {
 	itemList := internal.GetResourceList(itemEndpoint)
 	return itemList
 }
 
-func GetItemAttribute(nameOrId string) (structs.ItemAttribute, error) {
+func (items Items) GetItemAttribute(nameOrId string) (structs.ItemAttribute, error) {
 	itemAttribute, err := pokeapi.ItemAttribute(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "item attribute", nameOrId)
@@ -31,12 +31,12 @@ func GetItemAttribute(nameOrId string) (structs.ItemAttribute, error) {
 	return itemAttribute, nil
 }
 
-func GetItemAttributeList() structs.Resource {
+func (items Items) GetItemAttributeList() structs.Resource {
 	itemAttributeList := internal.GetResourceList(itemAttributeEndpoint)
 	return itemAttributeList
 }
 
-func GetItemCategory(nameOrId string) (structs.ItemCategory, error) {
+func (items Items) GetItemCategory(nameOrId string) (structs.ItemCategory, error) {
 	itemCategory, err := pokeapi.ItemCategory(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "item category", nameOrId)
@@ -45,12 +45,12 @@ func GetItemCategory(nameOrId string) (structs.ItemCategory, error) {
 	return itemCategory, nil
 }
 
-func GetItemCategoryList() structs.Resource {
+func (items Items) GetItemCategoryList() structs.Resource {
 	itemCategoryList := internal.GetResourceList(itemCategoryEndpoint)
 	return itemCategoryList
 }
 
-func GetItemFlingEffect(nameOrId string) (structs.ItemFlingEffect, error) {
+func (items Items) GetItemFlingEffect(nameOrId string) (structs.ItemFlingEffect, error) {
 	itemFlingEffect, err := pokeapi.ItemFlingEffect(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "item fling effect", nameOrId)
@@ -59,12 +59,12 @@ func GetItemFlingEffect(nameOrId string) (structs.ItemFlingEffect, error) {
 	return itemFlingEffect, nil
 }
 
-func GetItemFlingEffectList() structs.Resource {
+func (items Items) GetItemFlingEffectList() structs.Resource {
 	itemFlingEffectList := internal.GetResourceList(itemFlingEffectEndpoint)
 	return itemFlingEffectList
 }
 
-func GetItemPocket(nameOrId string) (structs.ItemPocket, error) {
+func (items Items) GetItemPocket(nameOrId string) (structs.ItemPocket, error) {
 	itemPocket, err := pokeapi.ItemPocket(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "item pocket", nameOrId)
@@ -73,7 +73,7 @@ func GetItemPocket(nameOrId string) (structs.ItemPocket, error) {
 	return itemPocket, nil
 }
 
-func GetItemPocketList() structs.Resource {
+func (items Items) GetItemPocketList() structs.Resource {
 	itemPocketList := internal.GetResourceList(itemPocketEndpoint)
 	return itemPocketList
 }

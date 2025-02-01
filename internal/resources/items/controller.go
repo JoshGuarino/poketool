@@ -2,36 +2,36 @@ package items
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
-  switch result {
+func (controller Controller) GetList(result string) structs.Resource {
+	switch result {
 	case "Item":
-    return GetItemList()
+		return controller.items.GetItemList()
 	case "Item Attribute":
-		return GetItemAttributeList()
+		return controller.items.GetItemAttributeList()
 	case "Item Category":
-		return GetItemCategoryList()
+		return controller.items.GetItemCategoryList()
 	case "Item Fling Effect":
-    return GetItemFlingEffectList()
-  case "Item Pocket":
-    return GetItemPocketList()
-  }
+		return controller.items.GetItemFlingEffectList()
+	case "Item Pocket":
+		return controller.items.GetItemPocketList()
+	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
-  switch result {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
+	switch result {
 	case "Item":
-    return GetItem(search)
+		return controller.items.GetItem(search)
 	case "Item Attribute":
-		return GetItemAttribute(search)
+		return controller.items.GetItemAttribute(search)
 	case "Item Category":
-		return GetItemCategory(search)
+		return controller.items.GetItemCategory(search)
 	case "Item Fling Effect":
-    return GetItemFlingEffect(search)
-  case "Item Pocket":
-    return GetItemPocket(search)
-  }
+		return controller.items.GetItemFlingEffect(search)
+	case "Item Pocket":
+		return controller.items.GetItemPocket(search)
+	}
 
-	return "", nil
-} 
+	return nil, nil
+}

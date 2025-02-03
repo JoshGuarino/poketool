@@ -19,6 +19,9 @@ var locationsCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of locations Controller
+		var controller internal.IController = locations.Controller{}
+
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select locations resource group", locationsGroups)
 		locationsGroup := internal.RunSelectPrompt(selectPrompt)
@@ -26,14 +29,14 @@ var locationsCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := locations.GetSpecific(locationsGroup, search)
+			resource, err := controller.GetSpecific(locationsGroup, search)
 			if err != nil {
 				return
 			}
-			data.Data = s
+			data.Data = resource
 		} else {
-			l := locations.GetList(locationsGroup)
-			data.Data = l
+			list := controller.GetList(locationsGroup)
+			data.Data = list
 		}
 
 		// create file if output flag exists

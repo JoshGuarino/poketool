@@ -8,7 +8,7 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetLocation(nameOrId string) (structs.Location, error) {
+func (locations Locations) GetLocation(nameOrId string) (structs.Location, error) {
 	location, err := pokeapi.Location(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "location", nameOrId)
@@ -17,12 +17,12 @@ func GetLocation(nameOrId string) (structs.Location, error) {
 	return location, nil
 }
 
-func GetLocationList() structs.Resource {
+func (locations Locations) GetLocationList() structs.Resource {
 	locationList := internal.GetResourceList(locationEndpoint)
 	return locationList
 }
 
-func GetLocationArea(nameOrId string) (structs.LocationArea, error) {
+func (locations Locations) GetLocationArea(nameOrId string) (structs.LocationArea, error) {
 	locationArea, err := pokeapi.LocationArea(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "location area", nameOrId)
@@ -31,12 +31,12 @@ func GetLocationArea(nameOrId string) (structs.LocationArea, error) {
 	return locationArea, nil
 }
 
-func GetLocationAreaList() structs.Resource {
+func (locations Locations) GetLocationAreaList() structs.Resource {
 	locationAreaList := internal.GetResourceList(locationAreaEndpoint)
 	return locationAreaList
 }
 
-func GetPalParkArea(nameOrId string) (structs.PalParkArea, error) {
+func (locations Locations) GetPalParkArea(nameOrId string) (structs.PalParkArea, error) {
 	palParkArea, err := pokeapi.PalParkArea(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pal park area", nameOrId)
@@ -45,12 +45,12 @@ func GetPalParkArea(nameOrId string) (structs.PalParkArea, error) {
 	return palParkArea, nil
 }
 
-func GetPalParkAreaList() structs.Resource {
+func (locations Locations) GetPalParkAreaList() structs.Resource {
 	palParkAreaList := internal.GetResourceList(palParkAreaEndpoint)
 	return palParkAreaList
 }
 
-func GetRegion(nameOrId string) (structs.Region, error) {
+func (locations Locations) GetRegion(nameOrId string) (structs.Region, error) {
 	region, err := pokeapi.Region(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "region", nameOrId)
@@ -59,7 +59,7 @@ func GetRegion(nameOrId string) (structs.Region, error) {
 	return region, err
 }
 
-func GetRegionList() structs.Resource {
+func (locations Locations) GetRegionList() structs.Resource {
 	regionList := internal.GetResourceList(regionEndpoint)
 	return regionList
 }

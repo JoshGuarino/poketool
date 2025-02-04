@@ -2,44 +2,44 @@ package moves
 
 import "github.com/mtslzr/pokeapi-go/structs"
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Move":
-		return GetMoveList()
+		return controller.moves.GetMoveList()
 	case "Move Ailment":
-		return GetMoveAilmentList()
+		return controller.moves.GetMoveAilmentList()
 	case "Move Battle Style":
-		return GetMoveBattleStyleList()
+		return controller.moves.GetMoveBattleStyleList()
 	case "Move Category":
-		return GetMoveCategoryList()
+		return controller.moves.GetMoveCategoryList()
 	case "Move Damage Class":
-		return GetMoveDamageClassList()
+		return controller.moves.GetMoveDamageClassList()
 	case "Move Learn Method":
-		return GetMoveLearnMethodList()
+		return controller.moves.GetMoveLearnMethodList()
 	case "Move Target":
-		return GetMoveTargetList()
+		return controller.moves.GetMoveTargetList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Move":
-		return GetMove(search)
+		return controller.moves.GetMove(search)
 	case "Move Ailment":
-		return GetMoveAilment(search)
+		return controller.moves.GetMoveAilment(search)
 	case "Move Battle Style":
-		return GetMoveBattleStyle(search)
+		return controller.moves.GetMoveBattleStyle(search)
 	case "Move Category":
-		return GetMoveCategory(search)
+		return controller.moves.GetMoveCategory(search)
 	case "Move Damage Class":
-		return GetMoveDamageClass(search)
+		return controller.moves.GetMoveDamageClass(search)
 	case "Move Learn Method":
-		return GetMoveLearnMethod(search)
+		return controller.moves.GetMoveLearnMethod(search)
 	case "Move Target":
-		return GetMoveTarget(search)
+		return controller.moves.GetMoveTarget(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

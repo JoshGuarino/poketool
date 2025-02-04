@@ -8,7 +8,7 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetMove(nameOrId string) (structs.Move, error) {
+func (moves Moves) GetMove(nameOrId string) (structs.Move, error) {
 	move, err := pokeapi.Move(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move", nameOrId)
@@ -17,12 +17,12 @@ func GetMove(nameOrId string) (structs.Move, error) {
 	return move, err
 }
 
-func GetMoveList() structs.Resource {
+func (moves Moves) GetMoveList() structs.Resource {
 	moveList := internal.GetResourceList(moveEndpoint)
 	return moveList
 }
 
-func GetMoveAilment(nameOrId string) (structs.MoveAilment, error) {
+func (moves Moves) GetMoveAilment(nameOrId string) (structs.MoveAilment, error) {
 	moveAilment, err := pokeapi.MoveAilment(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move ailment", nameOrId)
@@ -31,12 +31,12 @@ func GetMoveAilment(nameOrId string) (structs.MoveAilment, error) {
 	return moveAilment, nil
 }
 
-func GetMoveAilmentList() structs.Resource {
+func (moves Moves) GetMoveAilmentList() structs.Resource {
 	moveAilmentList := internal.GetResourceList(moveAilmentEndpoint)
 	return moveAilmentList
 }
 
-func GetMoveBattleStyle(nameOrId string) (structs.MoveBattleStyle, error) {
+func (moves Moves) GetMoveBattleStyle(nameOrId string) (structs.MoveBattleStyle, error) {
 	moveBattleStyle, err := pokeapi.MoveBattleStyle(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move battle style", nameOrId)
@@ -45,12 +45,12 @@ func GetMoveBattleStyle(nameOrId string) (structs.MoveBattleStyle, error) {
 	return moveBattleStyle, nil
 }
 
-func GetMoveBattleStyleList() structs.Resource {
+func (moves Moves) GetMoveBattleStyleList() structs.Resource {
 	moveBattleStyleList := internal.GetResourceList(moveBattleStyleEndpoint)
 	return moveBattleStyleList
 }
 
-func GetMoveCategory(nameOrId string) (structs.MoveCategory, error) {
+func (moves Moves) GetMoveCategory(nameOrId string) (structs.MoveCategory, error) {
 	moveCategory, err := pokeapi.MoveCategory(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move category", nameOrId)
@@ -59,12 +59,12 @@ func GetMoveCategory(nameOrId string) (structs.MoveCategory, error) {
 	return moveCategory, nil
 }
 
-func GetMoveCategoryList() structs.Resource {
+func (moves Moves) GetMoveCategoryList() structs.Resource {
 	moveCategoryList := internal.GetResourceList(moveCategoryEndpoint)
 	return moveCategoryList
 }
 
-func GetMoveDamageClass(nameOrId string) (structs.MoveDamageClass, error) {
+func (moves Moves) GetMoveDamageClass(nameOrId string) (structs.MoveDamageClass, error) {
 	moveDamageClass, err := pokeapi.MoveDamageClass(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move damage class", nameOrId)
@@ -73,12 +73,12 @@ func GetMoveDamageClass(nameOrId string) (structs.MoveDamageClass, error) {
 	return moveDamageClass, nil
 }
 
-func GetMoveDamageClassList() structs.Resource {
+func (moves Moves) GetMoveDamageClassList() structs.Resource {
 	moveDamageClassList := internal.GetResourceList(moveDamageClassEndpoint)
 	return moveDamageClassList
 }
 
-func GetMoveLearnMethod(nameOrId string) (structs.MoveLearnMethod, error) {
+func (moves Moves) GetMoveLearnMethod(nameOrId string) (structs.MoveLearnMethod, error) {
 	moveLearnMethod, err := pokeapi.MoveLearnMethod(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move learn method", nameOrId)
@@ -87,12 +87,12 @@ func GetMoveLearnMethod(nameOrId string) (structs.MoveLearnMethod, error) {
 	return moveLearnMethod, nil
 }
 
-func GetMoveLearnMethodList() structs.Resource {
+func (moves Moves) GetMoveLearnMethodList() structs.Resource {
 	moveLearnMethodList := internal.GetResourceList(moveLearnMethodEndpoint)
 	return moveLearnMethodList
 }
 
-func GetMoveTarget(nameOrId string) (structs.MoveTarget, error) {
+func (moves Moves) GetMoveTarget(nameOrId string) (structs.MoveTarget, error) {
 	moveTarget, err := pokeapi.MoveTarget(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "move target", nameOrId)
@@ -101,7 +101,7 @@ func GetMoveTarget(nameOrId string) (structs.MoveTarget, error) {
 	return moveTarget, nil
 }
 
-func GetMoveTargetList() structs.Resource {
+func (moves Moves) GetMoveTargetList() structs.Resource {
 	moveTargetList := internal.GetResourceList(moveTargetEndpoint)
 	return moveTargetList
 }

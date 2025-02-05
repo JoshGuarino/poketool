@@ -9,7 +9,7 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetAbility(nameOrId string) (structs.Ability, error) {
+func (pokemon Pokemon) GetAbility(nameOrId string) (structs.Ability, error) {
 	ability, err := pokeapi.Ability(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "ability", nameOrId)
@@ -18,12 +18,12 @@ func GetAbility(nameOrId string) (structs.Ability, error) {
 	return ability, nil
 }
 
-func GetAbilityList() structs.Resource {
+func (pokemon Pokemon) GetAbilityList() structs.Resource {
 	abilityList := internal.GetResourceList(abilityEndpoint)
 	return abilityList
 }
 
-func GetCharacteristic(id string) (structs.Characteristic, error) {
+func (pokemon Pokemon) GetCharacteristic(id string) (structs.Characteristic, error) {
 	characteristic, err := pokeapi.Characteristic(id)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetById, "characteristic", id)
@@ -32,12 +32,12 @@ func GetCharacteristic(id string) (structs.Characteristic, error) {
 	return characteristic, nil
 }
 
-func GetCharacteristicList() structs.Resource {
+func (pokemon Pokemon) GetCharacteristicList() structs.Resource {
 	characteristicList := internal.GetResourceList(characteristicEndpoint)
 	return characteristicList
 }
 
-func GetEggGroup(nameOrId string) (structs.EggGroup, error) {
+func (pokemon Pokemon) GetEggGroup(nameOrId string) (structs.EggGroup, error) {
 	eggGroup, err := pokeapi.EggGroup(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "egg group", nameOrId)
@@ -46,12 +46,12 @@ func GetEggGroup(nameOrId string) (structs.EggGroup, error) {
 	return eggGroup, nil
 }
 
-func GetEggGroupList() structs.Resource {
+func (pokemon Pokemon) GetEggGroupList() structs.Resource {
 	eggGroupList := internal.GetResourceList(eggGroupEndpoint)
 	return eggGroupList
 }
 
-func GetGender(nameOrId string) (structs.Gender, error) {
+func (pokemon Pokemon) GetGender(nameOrId string) (structs.Gender, error) {
 	gender, err := pokeapi.Gender(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "gender", nameOrId)
@@ -60,12 +60,12 @@ func GetGender(nameOrId string) (structs.Gender, error) {
 	return gender, nil
 }
 
-func GetGenderList() structs.Resource {
+func (pokemon Pokemon) GetGenderList() structs.Resource {
 	genderList := internal.GetResourceList(genderEndpoint)
 	return genderList
 }
 
-func GetGrowthRate(nameOrId string) (structs.GrowthRate, error) {
+func (pokemon Pokemon) GetGrowthRate(nameOrId string) (structs.GrowthRate, error) {
 	growthRate, err := pokeapi.GrowthRate(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "growth rate", nameOrId)
@@ -74,12 +74,12 @@ func GetGrowthRate(nameOrId string) (structs.GrowthRate, error) {
 	return growthRate, nil
 }
 
-func GetGrowthRateList() structs.Resource {
+func (pokemon Pokemon) GetGrowthRateList() structs.Resource {
 	growthRateList := internal.GetResourceList(growthRateEndpoint)
 	return growthRateList
 }
 
-func GetNature(nameOrId string) (structs.Nature, error) {
+func (pokemon Pokemon) GetNature(nameOrId string) (structs.Nature, error) {
 	nature, err := pokeapi.Nature(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "nature", nameOrId)
@@ -88,12 +88,12 @@ func GetNature(nameOrId string) (structs.Nature, error) {
 	return nature, nil
 }
 
-func GetNatureList() structs.Resource {
+func (pokemon Pokemon) GetNatureList() structs.Resource {
 	natureList := internal.GetResourceList(natureEndpoint)
 	return natureList
 }
 
-func GetPokeathlonStat(nameOrId string) (structs.PokeathlonStat, error) {
+func (pokemon Pokemon) GetPokeathlonStat(nameOrId string) (structs.PokeathlonStat, error) {
 	pokeathlonStat, err := pokeapi.PokeathlonStat(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokeathlon stat", nameOrId)
@@ -102,26 +102,26 @@ func GetPokeathlonStat(nameOrId string) (structs.PokeathlonStat, error) {
 	return pokeathlonStat, nil
 }
 
-func GetPokeathlonStatList() structs.Resource {
+func (pokemon Pokemon) GetPokeathlonStatList() structs.Resource {
 	pokeathlonStatList := internal.GetResourceList(pokeathlonStatEndpoint)
 	return pokeathlonStatList
 }
 
-func GetPokemon(nameOrId string) (structs.Pokemon, error) {
-	pokemon, err := pokeapi.Pokemon(nameOrId)
+func (pokemon Pokemon) GetPokemon(nameOrId string) (structs.Pokemon, error) {
+	pokemonResource, err := pokeapi.Pokemon(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokemon", nameOrId)
 		return structs.Pokemon{}, err
 	}
-	return pokemon, nil
+	return pokemonResource, nil
 }
 
-func GetPokemonList() structs.Resource {
+func (pokemon Pokemon) GetPokemonList() structs.Resource {
 	pokemonList := internal.GetResourceList(pokemonEndpoint)
 	return pokemonList
 }
 
-func GetPokemonLocationAreas(nameOrId string) []internal.LocationAreaEncounter {
+func (pokemon Pokemon) GetPokemonLocationAreas(nameOrId string) []internal.LocationAreaEncounter {
 	url := pokemonEndpoint + "/" + nameOrId + "/encounters"
 	body := internal.Get(url)
 	pokemonLocationAreas := []internal.LocationAreaEncounter{}
@@ -129,7 +129,7 @@ func GetPokemonLocationAreas(nameOrId string) []internal.LocationAreaEncounter {
 	return pokemonLocationAreas
 }
 
-func GetPokemonColor(nameOrId string) (structs.PokemonColor, error) {
+func (pokemon Pokemon) GetPokemonColor(nameOrId string) (structs.PokemonColor, error) {
 	pokemonColor, err := pokeapi.PokemonColor(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokemon color", nameOrId)
@@ -138,12 +138,12 @@ func GetPokemonColor(nameOrId string) (structs.PokemonColor, error) {
 	return pokemonColor, nil
 }
 
-func GetPokemonColorList() structs.Resource {
+func (pokemon Pokemon) GetPokemonColorList() structs.Resource {
 	pokemonColorList := internal.GetResourceList(pokemonColorEndpoint)
 	return pokemonColorList
 }
 
-func GetPokemonForm(nameOrId string) (structs.PokemonForm, error) {
+func (pokemon Pokemon) GetPokemonForm(nameOrId string) (structs.PokemonForm, error) {
 	pokemonForm, err := pokeapi.PokemonForm(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokemon form", nameOrId)
@@ -152,12 +152,12 @@ func GetPokemonForm(nameOrId string) (structs.PokemonForm, error) {
 	return pokemonForm, nil
 }
 
-func GetPokemonFormList() structs.Resource {
+func (pokemon Pokemon) GetPokemonFormList() structs.Resource {
 	pokemonFormList := internal.GetResourceList(pokemonFormEndpoint)
 	return pokemonFormList
 }
 
-func GetPokemonHabitat(nameOrId string) (structs.PokemonHabitat, error) {
+func (pokemon Pokemon) GetPokemonHabitat(nameOrId string) (structs.PokemonHabitat, error) {
 	pokemonHabitat, err := pokeapi.PokemonHabitat(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokemon habitat", nameOrId)
@@ -166,12 +166,12 @@ func GetPokemonHabitat(nameOrId string) (structs.PokemonHabitat, error) {
 	return pokemonHabitat, nil
 }
 
-func GetPokemonHabitatList() structs.Resource {
+func (pokemon Pokemon) GetPokemonHabitatList() structs.Resource {
 	pokemonHabitatList := internal.GetResourceList(pokemonHabitatEndpoint)
 	return pokemonHabitatList
 }
 
-func GetPokemonShape(nameOrId string) (structs.PokemonShape, error) {
+func (pokemon Pokemon) GetPokemonShape(nameOrId string) (structs.PokemonShape, error) {
 	pokemonShape, err := pokeapi.PokemonShape(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokemon shape", nameOrId)
@@ -180,12 +180,12 @@ func GetPokemonShape(nameOrId string) (structs.PokemonShape, error) {
 	return pokemonShape, nil
 }
 
-func GetPokemonShapeList() structs.Resource {
+func (pokemon Pokemon) GetPokemonShapeList() structs.Resource {
 	pokemonShapeList := internal.GetResourceList(pokemonShapeEndpoint)
 	return pokemonShapeList
 }
 
-func GetPokemonSpecies(nameOrId string) (structs.PokemonSpecies, error) {
+func (pokemon Pokemon) GetPokemonSpecies(nameOrId string) (structs.PokemonSpecies, error) {
 	pokemonSpecies, err := pokeapi.PokemonSpecies(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokemon species", nameOrId)
@@ -194,12 +194,12 @@ func GetPokemonSpecies(nameOrId string) (structs.PokemonSpecies, error) {
 	return pokemonSpecies, nil
 }
 
-func GetPokemonSpeciesList() structs.Resource {
+func (pokemon Pokemon) GetPokemonSpeciesList() structs.Resource {
 	pokemonSpeciesList := internal.GetResourceList(pokemonSpeciesEndpoint)
 	return pokemonSpeciesList
 }
 
-func GetStat(nameOrId string) (structs.Stat, error) {
+func (pokemon Pokemon) GetStat(nameOrId string) (structs.Stat, error) {
 	stat, err := pokeapi.Stat(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "stat", nameOrId)
@@ -208,12 +208,12 @@ func GetStat(nameOrId string) (structs.Stat, error) {
 	return stat, nil
 }
 
-func GetStatList() structs.Resource {
+func (pokemon Pokemon) GetStatList() structs.Resource {
 	statList := internal.GetResourceList(statEndpoint)
 	return statList
 }
 
-func GetType(nameOrId string) (structs.Type, error) {
+func (pokemon Pokemon) GetType(nameOrId string) (structs.Type, error) {
 	pokemonType, err := pokeapi.Type(nameOrId)
 	if err != nil {
 		fmt.Printf(internal.ErrorStringGetByNameOrId, "type", nameOrId)
@@ -222,7 +222,7 @@ func GetType(nameOrId string) (structs.Type, error) {
 	return pokemonType, nil
 }
 
-func GetTypeList() structs.Resource {
+func (pokemon Pokemon) GetTypeList() structs.Resource {
 	typeList := internal.GetResourceList(typeEndpoint)
 	return typeList
 }

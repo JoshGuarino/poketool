@@ -4,76 +4,76 @@ import (
 	"github.com/mtslzr/pokeapi-go/structs"
 )
 
-func GetList(result string) structs.Resource {
+func (controller Controller) GetList(result string) structs.Resource {
 	switch result {
 	case "Abilities":
-		return GetAbilityList()
+		return controller.pokemon.GetAbilityList()
 	case "Characteristics":
-		return GetCharacteristicList()
+		return controller.pokemon.GetCharacteristicList()
 	case "Egg Groups":
-		return GetEggGroupList()
+		return controller.pokemon.GetEggGroupList()
 	case "Genders":
-		return GetGenderList()
+		return controller.pokemon.GetGenderList()
 	case "Growth Rates":
-		return GetGrowthRateList()
+		return controller.pokemon.GetGrowthRateList()
 	case "Natures":
-		return GetNatureList()
+		return controller.pokemon.GetNatureList()
 	case "Pokeathlon Stats":
-		return GetPokeathlonStatList()
+		return controller.pokemon.GetPokeathlonStatList()
 	case "Pokemon":
-		return GetPokemonList()
+		return controller.pokemon.GetPokemonList()
 	case "Pokemon Colors":
-		return GetPokemonColorList()
+		return controller.pokemon.GetPokemonColorList()
 	case "Pokemon Forms":
-		return GetPokemonFormList()
+		return controller.pokemon.GetPokemonFormList()
 	case "Pokemon Habitats":
-		return GetPokemonHabitatList()
+		return controller.pokemon.GetPokemonHabitatList()
 	case "Pokemon Shapes":
-		return GetPokemonShapeList()
+		return controller.pokemon.GetPokemonShapeList()
 	case "Pokemon Species":
-		return GetPokemonSpeciesList()
+		return controller.pokemon.GetPokemonSpeciesList()
 	case "Stats":
-		return GetStatList()
+		return controller.pokemon.GetStatList()
 	case "Types":
-		return GetTypeList()
+		return controller.pokemon.GetTypeList()
 	}
 
 	return structs.Resource{}
 }
 
-func GetSpecific(result string, search string) (interface{}, error) {
+func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
 	switch result {
 	case "Abilities":
-		return GetAbility(search)
+		return controller.pokemon.GetAbility(search)
 	case "Characteristics":
-		return GetCharacteristic(search)
+		return controller.pokemon.GetCharacteristic(search)
 	case "Egg Groups":
-		return GetEggGroup(search)
+		return controller.pokemon.GetEggGroup(search)
 	case "Genders":
-		return GetGender(search)
+		return controller.pokemon.GetGender(search)
 	case "Growth Rates":
-		return GetGrowthRate(search)
+		return controller.pokemon.GetGrowthRate(search)
 	case "Natures":
-		return GetNature(search)
+		return controller.pokemon.GetNature(search)
 	case "Pokeathlon Stats":
-		return GetPokeathlonStat(search)
+		return controller.pokemon.GetPokeathlonStat(search)
 	case "Pokemon":
-		return GetPokemon(search)
+		return controller.pokemon.GetPokemon(search)
 	case "Pokemon Colors":
-		return GetPokemonColor(search)
+		return controller.pokemon.GetPokemonColor(search)
 	case "Pokemon Forms":
-		return GetPokemonForm(search)
+		return controller.pokemon.GetPokemonForm(search)
 	case "Pokemon Habitats":
-		return GetPokemonHabitat(search)
+		return controller.pokemon.GetPokemonHabitat(search)
 	case "Pokemon Shapes":
-		return GetPokemonShape(search)
+		return controller.pokemon.GetPokemonShape(search)
 	case "Pokemon Species":
-		return GetPokemonSpecies(search)
+		return controller.pokemon.GetPokemonSpecies(search)
 	case "Stats":
-		return GetStat(search)
+		return controller.pokemon.GetStat(search)
 	case "Types":
-		return GetType(search)
+		return controller.pokemon.GetType(search)
 	}
 
-	return "", nil
+	return nil, nil
 }

@@ -23,6 +23,9 @@ var pokemonCmd = &cobra.Command{
 		// generic data holder struct
 		data := internal.Data[interface{}]{}
 
+		// declare instance of pokemon Controller
+		var controller internal.IController = pokemon.Controller{}
+
 		// select prompt
 		prompt := internal.CreateListPrompt("Select pokemon resource group", pokemonGroups)
 		pokemonGroup := internal.RunSelectPrompt(prompt)
@@ -30,14 +33,14 @@ var pokemonCmd = &cobra.Command{
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			s, err := pokemon.GetSpecific(pokemonGroup, search)
+			resource, err := controller.GetSpecific(pokemonGroup, search)
 			if err != nil {
 				return
 			}
-			data.Data = s
+			data.Data = resource
 		} else {
-			p := pokemon.GetList(pokemonGroup)
-			data.Data = p
+			list := controller.GetList(pokemonGroup)
+			data.Data = list
 		}
 
 		// create file if output flag exists

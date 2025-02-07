@@ -16,8 +16,11 @@ func TestGetList(t *testing.T) {
 	rSuper := controller.GetList("Super Contest Effect")
 	rFail := controller.GetList("")
 	assert.IsType(t, []structs.Result{}, rType.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rType.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rEffect.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rEffect.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rSuper.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rSuper.Results, "Expected to not have an empty array.")
 	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
 }
 

@@ -14,6 +14,7 @@ func TestGetList(t *testing.T) {
 	rMachines := controller.GetList("Machine")
 	rFail := controller.GetList("test")
 	assert.IsType(t, []structs.Result{}, rMachines.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rMachines.Results, "Expected to not have an empty array.")
 	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
 }
 

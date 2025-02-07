@@ -16,8 +16,11 @@ func TestGetList(t *testing.T) {
 	rValue := controller.GetList("Encounter Condition Value")
 	rFail := controller.GetList("")
 	assert.IsType(t, []structs.Result{}, rMethod.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rMethod.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rCondition.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rCondition.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rValue.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rValue.Results, "Expected to not have an empty array.")
 	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
 }
 

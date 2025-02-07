@@ -17,9 +17,13 @@ func TestGetList(t *testing.T) {
 	rRegion := controller.GetList("Region")
 	rFail := controller.GetList("test")
 	assert.IsType(t, []structs.Result{}, rLocation.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rLocation.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rArea.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rArea.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rPalPark.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rPalPark.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []structs.Result{}, rRegion.Results, "Expected to have array of type 'Result' struct.")
+	assert.NotEmpty(t, rRegion.Results, "Expected to not have an empty array.")
 	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
 }
 

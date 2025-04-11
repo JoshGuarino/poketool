@@ -17,10 +17,10 @@ var berriesCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// generic data holder struct
-		data := internal.Data[interface{}]{}
+		data := internal.Data[any]{}
 
 		// declare instance of berries Controller
-		var controller internal.IController = berries.Controller{}
+		var controller = berries.NewController()
 
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select berries resource group", berriesGroups)
@@ -35,7 +35,7 @@ var berriesCmd = &cobra.Command{
 			}
 			data.Data = resource
 		} else {
-			list := controller.GetList(berriesGroup)
+			list, _ := controller.GetList(berriesGroup)
 			data.Data = list
 		}
 

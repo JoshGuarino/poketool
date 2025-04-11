@@ -3,10 +3,11 @@ module github.com/joshguarino/poketool
 go 1.22.2
 
 require (
+	github.com/JoshGuarino/PokeGo v1.0.1
 	github.com/manifoldco/promptui v0.9.0
 	github.com/mtslzr/pokeapi-go v1.4.0
 	github.com/spf13/cobra v1.8.0
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 

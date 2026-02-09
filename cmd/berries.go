@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var berriesGroups = []string{"Berries", "Berry Firmnesses", "Berry Flavors"}
+var berriesResources = []string{"Berries", "Berry Firmnesses", "Berry Flavors"}
 
 // berriesCmd represents the berries command
 var berriesCmd = &cobra.Command{
@@ -20,10 +20,10 @@ var berriesCmd = &cobra.Command{
 		data := internal.Data[any]{}
 
 		// declare instance of berries Controller
-		var controller = berries.NewController()
+		controller := berries.NewController()
 
 		// select prompt
-		selectPrompt := internal.CreateListPrompt("Select berries resource group", berriesGroups)
+		selectPrompt := internal.CreateListPrompt("Select berries resource group", berriesResources)
 		berriesGroup := internal.RunSelectPrompt(selectPrompt)
 
 		// flag to search for specific resource else return paginated list

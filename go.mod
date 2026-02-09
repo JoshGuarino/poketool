@@ -3,7 +3,7 @@ module github.com/joshguarino/poketool
 go 1.22.2
 
 require (
-	github.com/JoshGuarino/PokeGo v1.2.1
+	github.com/JoshGuarino/PokeGo v1.2.3
 	github.com/manifoldco/promptui v0.9.0
 	github.com/mtslzr/pokeapi-go v1.4.0
 	github.com/spf13/cobra v1.8.0

@@ -1,5 +1,7 @@
-github.com/JoshGuarino/PokeGo v1.2.1 h1:gZ8/EJrEi1RLNJqoKcBBL49Tfh9DpCpkjRelHTz6YyM=
-github.com/JoshGuarino/PokeGo v1.2.1/go.mod h1:E1eQbT1xOztm2ogQ8/viti42eAz9KLuAAChwTJKN2eQ=
+github.com/JoshGuarino/PokeGo v1.2.2 h1:Q/OZ2rQBNzXe2/VZ699mkrfSdWOR5ATg2I+g7xoSX/Y=
+github.com/JoshGuarino/PokeGo v1.2.2/go.mod h1:E1eQbT1xOztm2ogQ8/viti42eAz9KLuAAChwTJKN2eQ=
+github.com/JoshGuarino/PokeGo v1.2.3 h1:3onGZXrcJD6nq24bt/sbhqzhaN2VSCNynPAB/qrHgNc=
+github.com/JoshGuarino/PokeGo v1.2.3/go.mod h1:E1eQbT1xOztm2ogQ8/viti42eAz9KLuAAChwTJKN2eQ=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1 h1:HwpRHbFMcZLEVr42D4p7XBqjyuxQH5SMiErDT4WkJ2k=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1/go.mod h1:uYgXzlJ7ZpABp8OJ+exZzJJhRNQ2ASbcXHWsFqH8hp8=
 github.com/charmbracelet/colorprofile v0.2.3-0.20250311203215-f60798e515dc h1:4pZI35227imm7yK2bGPcfpFEmuY1gc2YSTShr4iJBfs=

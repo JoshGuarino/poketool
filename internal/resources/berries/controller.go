@@ -3,25 +3,25 @@ package berries
 import (
 	"fmt"
 
-	"github.com/JoshGuarino/PokeGo/pkg/models"
+	berriesGroup "github.com/JoshGuarino/PokeGo/pkg/resources/berries"
 )
 
 type IController interface {
-	GetList(result string) (*models.NamedResourceList, error)
+	GetList(result string) (any, error)
 	GetSpecific(result string, search string) (any, error)
 }
 
 type Controller struct {
-	berries Berries
+	berries berriesGroup.Berries
 }
 
 func NewController() Controller {
 	return Controller{
-		berries: NewBerries(),
+		berries: berriesGroup.NewBerriesGroup(),
 	}
 }
 
-func (c Controller) GetList(result string) (*models.NamedResourceList, error) {
+func (c Controller) GetList(result string) (any, error) {
 	switch result {
 	case "Berries":
 		return c.berries.GetBerryList(20, 0)

@@ -1,51 +1,73 @@
 package contests
 
 import (
-	"fmt"
-
-	"github.com/joshguarino/poketool/internal"
-	"github.com/mtslzr/pokeapi-go"
-	"github.com/mtslzr/pokeapi-go/structs"
+	"github.com/JoshGuarino/PokeGo/pkg/models"
+	contestsGroup "github.com/JoshGuarino/PokeGo/pkg/resources/contests"
 )
 
-func (contests Contests) GetContestType(nameOrId string) (structs.ContestType, error) {
-	contestType, err := pokeapi.ContestType(nameOrId)
+type IContests interface {
+	GetContestType(nameOrId string) (*models.ContestType, error)
+	GetContestTypeList() *models.Resource
+	GetContestEffect(id string) (*models.ContestEffect, error)
+	GetContestEffectList() *models.Resource
+	GetSuperContestEffect(id string) (*models.SuperContestEffect, error)
+	GetSuperContestEffectList() *models.Resource
+}
+
+type Contests struct {
+	contestsGroup contestsGroup.Contests
+}
+
+func NewContests() Contests {
+	return Contests{
+		contestsGroup: contestsGroup.NewContestsGroup(),
+	}
+}
+
+func (c Contests) GetContestType(nameOrId string) (*models.ContestType, error) {
+	contestType, err := c.contestsGroup.GetContestType(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest type", nameOrId)
-		return structs.ContestType{}, err
+		return nil, err
 	}
 	return contestType, nil
 }
 
-func (contests Contests) GetContestTypeList() structs.Resource {
-	contestTypeList := internal.GetResourceList(contestTypeEndpoint)
-	return contestTypeList
+func (c Contests) GetContestTypeList(limit int, offset int) (*models.NamedResourceList, error) {
+	contestTypeList, err := c.contestsGroup.GetContestTypeList(limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	return contestTypeList, nil
 }
 
-func (contests Contests) GetContestEffect(id string) (structs.ContestEffect, error) {
-	contestEffect, err := pokeapi.ContestEffect(id)
+func (c Contests) GetContestEffect(id string) (*models.ContestEffect, error) {
+	contestEffect, err := c.contestsGroup.GetContestEffect(id)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "contest effect", id)
-		return structs.ContestEffect{}, err
+		return nil, err
 	}
 	return contestEffect, nil
 }
 
-func (contests Contests) GetContestEffectList() structs.Resource {
-	contestEffectList := internal.GetResourceList(contestEffectEndpoint)
-	return contestEffectList
+func (c Contests) GetContestEffectList(limit int, offset int) (*models.ResourceList, error) {
+	contestEffectList, err := c.contestsGroup.GetContestEffectList(limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	return contestEffectList, nil
 }
 
-func (contests Contests) GetSuperContestEffect(id string) (structs.SuperContestEffect, error) {
-	superContestEffect, err := pokeapi.SuperContestEffect(id)
+func (c Contests) GetSuperContestEffect(id string) (*models.SuperContestEffect, error) {
+	superContestEffect, err := c.contestsGroup.GetSuperContestEffect(id)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "super contest effect", id)
-		return structs.SuperContestEffect{}, err
+		return nil, err
 	}
 	return superContestEffect, nil
 }
 
-func (contests Contests) GetSuperContestEffectList() structs.Resource {
-	superContestEffectList := internal.GetResourceList(superContestEffectEndpoint)
-	return superContestEffectList
+func (c Contests) GetSuperContestEffectList(limit int, offset int) (*models.ResourceList, error) {
+	superContestEffectList, err := c.contestsGroup.GetSuperContestEffectList(limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	return superContestEffectList, nil
 }

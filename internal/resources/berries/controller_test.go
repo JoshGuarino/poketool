@@ -14,7 +14,7 @@ func TestGetList(t *testing.T) {
 	rFirmnesses, _ := controller.GetList("Berry Firmnesses")
 	rFlavors, _ := controller.GetList("Berry Flavors")
 	_, err := controller.GetList("test")
-	assert.IsType(t, []models.NamedResource{}, rBerries.Results, "Expected to have array of type 'Result' struct.")
+	assert.IsType(t, []models.NamedResource{}, rBerries.Result, "Expected to have array of type 'Result' struct.")
 	assert.NotEmpty(t, rBerries.Results, "Expected to not have an empty array.")
 	assert.IsType(t, []models.NamedResource{}, rFirmnesses.Results, "Expected to have array of type 'Result' struct.")
 	assert.NotEmpty(t, rFirmnesses.Results, "Expected to not have an empty array.")

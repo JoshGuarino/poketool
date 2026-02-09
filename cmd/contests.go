@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var contestsGroups = []string{"Contest Type", "Contest Effect", "Super Contest Effect"}
+var contestsResources = []string{"Contest Type", "Contest Effect", "Super Contest Effect"}
 
 // contestsCmd represents the contests command
 var contestsCmd = &cobra.Command{
@@ -17,31 +17,31 @@ var contestsCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// generic data holder struct
-		data := internal.Data[interface{}]{}
+		data := internal.Data[any]{}
 
 		// declare instance of contests Controller
-		var controller internal.IController = contests.Controller{}
+		controller := contests.NewController()
 
 		// select prompt
-		selectPrompt := internal.CreateListPrompt("Select contests resource group", contestsGroups)
-		contestsGroup := internal.RunSelectPrompt(selectPrompt)
+		selectPrompt := internal.CreateListPrompt("Select contests resource group", contestsResources)
+		resource := internal.RunSelectPrompt(selectPrompt)
 
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			resource, err := controller.GetSpecific(contestsGroup, search)
+			resource, err := controller.GetSpecific(resource, search)
 			if err != nil {
 				return
 			}
 			data.Data = resource
 		} else {
-			list := controller.GetList(contestsGroup)
+			list, _ := controller.GetList(resource)
 			data.Data = list
 		}
 
 		// create file if output flag exists
 		if outputToFile {
-			internal.OutputToFile(data.Data, contestsGroup)
+			internal.OutputToFile(data.Data, resource)
 		}
 		fmt.Println(data.Data)
 	},

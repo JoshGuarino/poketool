@@ -9,8 +9,8 @@ type Data[T any] struct {
 }
 
 type IController interface {
-	GetList(result string) structs.Resource
-	GetSpecific(result string, search string) (interface{}, error)
+	GetList(result string, limit int, offset int) (any, error)
+	GetSpecific(result string, search string) (any, error)
 }
 
 type LocationAreaEncounter struct {

@@ -6,35 +6,30 @@ import (
 	encountersGroup "github.com/JoshGuarino/PokeGo/pkg/resources/encounters"
 )
 
-type IController interface {
-	GetList(result string) (any, error)
-	GetSpecific(result string, search string) (any, error)
-}
-
-type Controller struct {
+type EncountersController struct {
 	encounters encountersGroup.Encounters
 }
 
-func NewController() Controller {
-	return Controller{
+func NewController() EncountersController {
+	return EncountersController{
 		encounters: encountersGroup.NewEncountersGroup(),
 	}
 }
 
-func (c Controller) GetList(result string) (any, error) {
+func (c EncountersController) GetList(result string, limit int, offset int) (any, error) {
 	switch result {
 	case "Encounter Method":
-		return c.encounters.GetEncounterMethodList(20, 0)
+		return c.encounters.GetEncounterMethodList(limit, offset)
 	case "Encounter Condition":
-		return c.encounters.GetEncounterConditionList(20, 0)
+		return c.encounters.GetEncounterConditionList(limit, offset)
 	case "Encounter Condition Value":
-		return c.encounters.GetEncounterConditionValueList(20, 0)
+		return c.encounters.GetEncounterConditionValueList(limit, offset)
 	}
 
 	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }
 
-func (c Controller) GetSpecific(result string, search string) (any, error) {
+func (c EncountersController) GetSpecific(result string, search string) (any, error) {
 	switch result {
 	case "Encounter Method":
 		return c.encounters.GetEncounterMethod(search)

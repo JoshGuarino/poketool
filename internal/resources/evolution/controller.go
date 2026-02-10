@@ -1,25 +1,39 @@
 package evolution
 
-import "github.com/mtslzr/pokeapi-go/structs"
+import (
+	"fmt"
 
-func (controller Controller) GetList(result string) structs.Resource {
-	switch result {
-	case "Evolution Chain":
-		return controller.evolution.GetEvolutionChainList()
-	case "Evolution Trigger":
-		return controller.evolution.GetEvolutionTriggerList()
-	}
+	evolutionGroup "github.com/JoshGuarino/PokeGo/pkg/resources/evolution"
+)
 
-	return structs.Resource{}
+type EvolutionController struct {
+	evolution evolutionGroup.Evolution
 }
 
-func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
+func NewController() EvolutionController {
+	return EvolutionController{
+		evolution: evolutionGroup.NewEvolutionGroup(),
+	}
+}
+
+func (c EvolutionController) GetList(result string, limit int, offset int) (any, error) {
 	switch result {
 	case "Evolution Chain":
-		return controller.evolution.GetEvolutionChain(search)
+		return c.evolution.GetEvolutionChainList(limit, offset)
 	case "Evolution Trigger":
-		return controller.evolution.GetEvolutionTrigger(search)
+		return c.evolution.GetEvolutionTriggerList(limit, offset)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
+}
+
+func (c EvolutionController) GetSpecific(result string, search string) (any, error) {
+	switch result {
+	case "Evolution Chain":
+		return c.evolution.GetEvolutionChain(search)
+	case "Evolution Trigger":
+		return c.evolution.GetEvolutionTrigger(search)
+	}
+
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }

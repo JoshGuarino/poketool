@@ -6,35 +6,30 @@ import (
 	contestsGroup "github.com/JoshGuarino/PokeGo/pkg/resources/contests"
 )
 
-type IController interface {
-	GetList(result string) (any, error)
-	GetSpecific(result string, search string) (any, error)
-}
-
-type Controller struct {
+type ContestsController struct {
 	contests contestsGroup.Contests
 }
 
-func NewController() Controller {
-	return Controller{
+func NewController() ContestsController {
+	return ContestsController{
 		contests: contestsGroup.NewContestsGroup(),
 	}
 }
 
-func (c Controller) GetList(result string) (any, error) {
+func (c ContestsController) GetList(result string, limit int, offset int) (any, error) {
 	switch result {
 	case "Contest Type":
-		return c.contests.GetContestTypeList(20, 0)
+		return c.contests.GetContestTypeList(limit, offset)
 	case "Contest Effect":
-		return c.contests.GetContestEffectList(20, 0)
+		return c.contests.GetContestEffectList(limit, offset)
 	case "Super Contest Effect":
-		return c.contests.GetSuperContestEffectList(20, 0)
+		return c.contests.GetSuperContestEffectList(limit, offset)
 	}
 
 	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }
 
-func (c Controller) GetSpecific(result string, search string) (any, error) {
+func (c ContestsController) GetSpecific(result string, search string) (any, error) {
 	switch result {
 	case "Contest Type":
 		return c.contests.GetContestType(search)

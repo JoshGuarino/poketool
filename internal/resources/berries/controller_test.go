@@ -4,16 +4,17 @@ import (
 	"testing"
 
 	"github.com/JoshGuarino/PokeGo/pkg/models"
+	"github.com/joshguarino/poketool/internal"
 	"github.com/stretchr/testify/assert"
 )
 
-var controller IController = NewController()
+var controller internal.IController = NewController()
 
 func TestGetList(t *testing.T) {
-	rBerries, _ := controller.GetList("Berries")
-	rFirmnesses, _ := controller.GetList("Berry Firmnesses")
-	rFlavors, _ := controller.GetList("Berry Flavors")
-	_, err := controller.GetList("test")
+	rBerries, _ := controller.GetList("Berries", 20, 0)
+	rFirmnesses, _ := controller.GetList("Berry Firmnesses", 20, 0)
+	rFlavors, _ := controller.GetList("Berry Flavors", 20, 0)
+	_, err := controller.GetList("test", 20, 0)
 	assert.IsType(t, &models.NamedResourceList{}, rBerries, "Expected to have array of type 'NamedResourceList' struct.")
 	assert.NotEmpty(t, rBerries, "Expected to not have an empty struct.")
 	assert.IsType(t, &models.NamedResourceList{}, rFirmnesses, "Expected to have array of type 'NamedResourceList' struct.")

@@ -6,35 +6,30 @@ import (
 	berriesGroup "github.com/JoshGuarino/PokeGo/pkg/resources/berries"
 )
 
-type IController interface {
-	GetList(result string) (any, error)
-	GetSpecific(result string, search string) (any, error)
-}
-
-type Controller struct {
+type BerriesController struct {
 	berries berriesGroup.Berries
 }
 
-func NewController() Controller {
-	return Controller{
+func NewController() BerriesController {
+	return BerriesController{
 		berries: berriesGroup.NewBerriesGroup(),
 	}
 }
 
-func (c Controller) GetList(result string) (any, error) {
+func (c BerriesController) GetList(result string, limit int, offset int) (any, error) {
 	switch result {
 	case "Berries":
-		return c.berries.GetBerryList(20, 0)
+		return c.berries.GetBerryList(limit, offset)
 	case "Berry Firmnesses":
-		return c.berries.GetBerryFirmnessList(20, 0)
+		return c.berries.GetBerryFirmnessList(limit, offset)
 	case "Berry Flavors":
-		return c.berries.GetBerryFlavorList(20, 0)
+		return c.berries.GetBerryFlavorList(limit, offset)
 	}
 
 	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }
 
-func (c Controller) GetSpecific(result string, search string) (any, error) {
+func (c BerriesController) GetSpecific(result string, search string) (any, error) {
 	switch result {
 	case "Berries":
 		return c.berries.GetBerry(search)

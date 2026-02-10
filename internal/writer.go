@@ -8,7 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func WriteFile(fileType string, data interface{}, outputDir string, outputName string) {
+func WriteFile(fileType string, data any, outputDir string, outputName string) {
 	switch fileType {
 	case "JSON":
 		WriteJSON(data, outputDir, outputName)
@@ -31,7 +31,7 @@ func ensureDirectoryExists(dirPath string) {
 	}
 }
 
-func WriteJSON(data interface{}, outputDir string, outputName string) {
+func WriteJSON(data any, outputDir string, outputName string) {
 	ensureDirectoryExists(outputDir)
 	file, err := os.Create(outputDir + "/" + outputName + ".json")
 	if err != nil {
@@ -44,7 +44,7 @@ func WriteJSON(data interface{}, outputDir string, outputName string) {
 	encoder.Encode(data)
 }
 
-func WriteYAML(data interface{}, outputDir string, outputName string) {
+func WriteYAML(data any, outputDir string, outputName string) {
 	ensureDirectoryExists(outputDir)
 	file, err := os.Create(outputDir + "/" + outputName + ".yaml")
 	if err != nil {
@@ -55,7 +55,7 @@ func WriteYAML(data interface{}, outputDir string, outputName string) {
 	file.Write(yaml)
 }
 
-func WriteXML(data interface{}, outputDir string, outputName string) {
+func WriteXML(data any, outputDir string, outputName string) {
 	ensureDirectoryExists(outputDir)
 	file, err := os.Create(outputDir + "/" + outputName + ".xml")
 	if err != nil {

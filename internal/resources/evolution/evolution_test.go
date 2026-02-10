@@ -6,30 +6,30 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var evolution IEvolution = Evolution{}
+var evolution IEvolution = NewEvolution()
 
 func TestGetEvolutionChain(t *testing.T) {
 	rById, _ := evolution.GetEvolutionChain("1")
-	rFail, _ := evolution.GetEvolutionChain("test")
+	_, err := evolution.GetEvolutionChain("test")
 	assert.Equal(t, 1, rById.ID, "Expected to receive id of '1'.")
-	assert.Equal(t, 0, rFail.ID, "Expected to receive an empty result.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }
 
 func TestGetEvolutionChainList(t *testing.T) {
-	r := evolution.GetEvolutionChainList()
-	assert.Equal(t, "https://pokeapi.co/api/v2/evolution-chain/1/", r.Results[0].URL, "Expected to have a list of 'evolution chain' resource.")
+	r, _ := evolution.GetEvolutionChainList(20, 0)
+	assert.Equal(t, "https://staging.pokeapi.co/api/v2/evolution-chain/1/", r.Results[0].URL, "Expected to have a list of 'evolution chain' resource.")
 }
 
 func TestGetEvolutionTrigger(t *testing.T) {
 	rById, _ := evolution.GetEvolutionTrigger("1")
 	rByName, _ := evolution.GetEvolutionTrigger("level-up")
-	rFail, _ := evolution.GetEvolutionTrigger("test")
+	_, err := evolution.GetEvolutionTrigger("test")
 	assert.Equal(t, "level-up", rById.Name, "Expected to receive 'level-up'.")
 	assert.Equal(t, "level-up", rByName.Name, "Expected to receive 'level-up'.")
-	assert.Equal(t, "", rFail.Name, "Expected to receive an empty result.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }
 
 func TestGetEvolutionTriggerList(t *testing.T) {
-	r := evolution.GetEvolutionTriggerList()
+	r, _ := evolution.GetEvolutionTriggerList(20, 0)
 	assert.Equal(t, "level-up", r.Results[0].Name, "Expected to have a list of 'evolution trigger' resource.")
 }

@@ -9,3 +9,4 @@ Poketool is go cli tool for looking up Pokémon data.
 - add support for pagination resource list exploring
 - possibly switch to `https://github.com/charmbracelet/bubbletea` for terminal ui?
 - integrate my PokeGo api wrapper into this project
+- refactor cmd files too much code duplication

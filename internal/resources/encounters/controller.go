@@ -1,29 +1,48 @@
 package encounters
 
-import "github.com/mtslzr/pokeapi-go/structs"
+import (
+	"fmt"
 
-func (controller Controller) GetList(result string) structs.Resource {
-	switch result {
-	case "Encounter Method":
-		return controller.encounters.GetEncounterMethodList()
-	case "Encounter Condition":
-		return controller.encounters.GetEncounterConditionList()
-	case "Encounter Condition Value":
-		return controller.encounters.GetEncounterConditionValueList()
-	}
+	encountersGroup "github.com/JoshGuarino/PokeGo/pkg/resources/encounters"
+)
 
-	return structs.Resource{}
+type IController interface {
+	GetList(result string) (any, error)
+	GetSpecific(result string, search string) (any, error)
 }
 
-func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
+type Controller struct {
+	encounters encountersGroup.Encounters
+}
+
+func NewController() Controller {
+	return Controller{
+		encounters: encountersGroup.NewEncountersGroup(),
+	}
+}
+
+func (c Controller) GetList(result string) (any, error) {
 	switch result {
 	case "Encounter Method":
-		return controller.encounters.GetEncounterMethod(search)
+		return c.encounters.GetEncounterMethodList(20, 0)
 	case "Encounter Condition":
-		return controller.encounters.GetEncounterCondition(search)
+		return c.encounters.GetEncounterConditionList(20, 0)
 	case "Encounter Condition Value":
-		return controller.encounters.GetEncounterConditionValue(search)
+		return c.encounters.GetEncounterConditionValueList(20, 0)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
+}
+
+func (c Controller) GetSpecific(result string, search string) (any, error) {
+	switch result {
+	case "Encounter Method":
+		return c.encounters.GetEncounterMethod(search)
+	case "Encounter Condition":
+		return c.encounters.GetEncounterCondition(search)
+	case "Encounter Condition Value":
+		return c.encounters.GetEncounterConditionValue(search)
+	}
+
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }

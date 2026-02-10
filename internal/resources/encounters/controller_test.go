@@ -3,34 +3,33 @@ package encounters
 import (
 	"testing"
 
-	"github.com/joshguarino/poketool/internal"
-	"github.com/mtslzr/pokeapi-go/structs"
+	"github.com/JoshGuarino/PokeGo/pkg/models"
 	"github.com/stretchr/testify/assert"
 )
 
-var controller internal.IController = Controller{encounters: Encounters{}}
+var controller IController = NewController()
 
 func TestGetList(t *testing.T) {
-	rMethod := controller.GetList("Encounter Method")
-	rCondition := controller.GetList("Encounter Condition")
-	rValue := controller.GetList("Encounter Condition Value")
-	rFail := controller.GetList("")
-	assert.IsType(t, []structs.Result{}, rMethod.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rMethod.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rCondition.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rCondition.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rValue.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rValue.Results, "Expected to not have an empty array.")
-	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
+	rMethod, _ := controller.GetList("Encounter Method")
+	rCondition, _ := controller.GetList("Encounter Condition")
+	rValue, _ := controller.GetList("Encounter Condition Value")
+	_, err := controller.GetList("test")
+	assert.IsType(t, &models.NamedResourceList{}, rMethod, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rMethod, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rCondition, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rCondition, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rValue, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rValue, "Expected to not have an empty struct.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }
 
 func TestGetSpecific(t *testing.T) {
 	rMethod, _ := controller.GetSpecific("Encounter Method", "1")
 	rCondition, _ := controller.GetSpecific("Encounter Condition", "1")
 	rValue, _ := controller.GetSpecific("Encounter Condition Value", "1")
-	rFail, _ := controller.GetSpecific("test", "test")
-	assert.IsType(t, structs.EncounterMethod{}, rMethod, "Expected to have type 'EncounterMethod' struct.")
-	assert.IsType(t, structs.EncounterCondition{}, rCondition, "Expected to have type 'EncounterCondition' struct.")
-	assert.IsType(t, structs.EncounterConditionValue{}, rValue, "Expected to have type 'EncounterConditionValue' struct.")
-	assert.Equal(t, nil, rFail, "Expected to have 'nil' value.")
+	_, err := controller.GetSpecific("test", "test")
+	assert.IsType(t, &models.EncounterMethod{}, rMethod, "Expected to have type 'EncounterMethod' struct.")
+	assert.IsType(t, &models.EncounterCondition{}, rCondition, "Expected to have type 'EncounterCondition' struct.")
+	assert.IsType(t, &models.EncounterConditionValue{}, rValue, "Expected to have type 'EncounterConditionValue' struct.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }

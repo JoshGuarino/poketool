@@ -1,51 +1,73 @@
 package encounters
 
 import (
-	"fmt"
-
-	"github.com/joshguarino/poketool/internal"
-	"github.com/mtslzr/pokeapi-go"
-	"github.com/mtslzr/pokeapi-go/structs"
+	"github.com/JoshGuarino/PokeGo/pkg/models"
+	encountersGroup "github.com/JoshGuarino/PokeGo/pkg/resources/encounters"
 )
 
-func (encounters Encounters) GetEncounterMethod(nameOrId string) (structs.EncounterMethod, error) {
-	encounterMethod, err := pokeapi.EncounterMethod(nameOrId)
+type IEncounters interface {
+	GetEncounterMethod(nameOrId string) (*models.EncounterMethod, error)
+	GetEncounterMethodList(limit int, offset int) (*models.NamedResourceList, error)
+	GetEncounterCondition(nameOrId string) (*models.EncounterCondition, error)
+	GetEncounterConditionList(limit int, offset int) (*models.NamedResourceList, error)
+	GetEncounterConditionValue(nameOrId string) (*models.EncounterConditionValue, error)
+	GetEncounterConditionValueList(limit int, offset int) (*models.NamedResourceList, error)
+}
+
+type Encounters struct {
+	encountersGroup encountersGroup.Encounters
+}
+
+func NewEncounters() Encounters {
+	return Encounters{
+		encountersGroup: encountersGroup.NewEncountersGroup(),
+	}
+}
+
+func (encounters Encounters) GetEncounterMethod(nameOrId string) (*models.EncounterMethod, error) {
+	encounterMethod, err := encounters.encountersGroup.GetEncounterMethod(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "encounter method", nameOrId)
-		return structs.EncounterMethod{}, err
+		return nil, err
 	}
 	return encounterMethod, nil
 }
 
-func (encounters Encounters) GetEncounterMethodList() structs.Resource {
-	encounterMethodList := internal.GetResourceList(encounterMethodEndpoint)
-	return encounterMethodList
+func (encounters Encounters) GetEncounterMethodList(limit int, offset int) (*models.NamedResourceList, error) {
+	encounterMethodList, err := encounters.encountersGroup.GetEncounterMethodList(limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	return encounterMethodList, nil
 }
 
-func (encounters Encounters) GetEncounterCondition(nameOrId string) (structs.EncounterCondition, error) {
-	encounterCondition, err := pokeapi.EncounterCondition(nameOrId)
+func (encounters Encounters) GetEncounterCondition(nameOrId string) (*models.EncounterCondition, error) {
+	encounterCondition, err := encounters.encountersGroup.GetEncounterCondition(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "encounter condition", nameOrId)
-		return structs.EncounterCondition{}, err
+		return nil, err
 	}
 	return encounterCondition, nil
 }
 
-func (encounters Encounters) GetEncounterConditionList() structs.Resource {
-	encounterConditionList := internal.GetResourceList(encounterConditionEndpoint)
-	return encounterConditionList
+func (encounters Encounters) GetEncounterConditionList(limit int, offset int) (*models.NamedResourceList, error) {
+	encounterConditionList, err := encounters.encountersGroup.GetEncounterConditionList(limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	return encounterConditionList, nil
 }
 
-func (encounters Encounters) GetEncounterConditionValue(nameOrId string) (structs.EncounterConditionValue, error) {
-	encounterConditionValue, err := pokeapi.EncounterConditionValue(nameOrId)
+func (encounters Encounters) GetEncounterConditionValue(nameOrId string) (*models.EncounterConditionValue, error) {
+	encounterConditionValue, err := encounters.encountersGroup.GetEncounterConditionValue(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "encounter condition value", nameOrId)
-		return structs.EncounterConditionValue{}, err
+		return nil, err
 	}
 	return encounterConditionValue, nil
 }
 
-func (encounters Encounters) GetEncounterConditionValueList() structs.Resource {
-	encounterConditionValueList := internal.GetResourceList(encounterConditionValueEndpoint)
-	return encounterConditionValueList
+func (encounters Encounters) GetEncounterConditionValueList(limit int, offset int) (*models.NamedResourceList, error) {
+	encounterConditionValueList, err := encounters.encountersGroup.GetEncounterConditionValueList(limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	return encounterConditionValueList, nil
 }

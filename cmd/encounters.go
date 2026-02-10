@@ -17,31 +17,31 @@ var encountersCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// generic data holder struct
-		data := internal.Data[interface{}]{}
+		data := internal.Data[any]{}
 
-		// declare instance of contests Controller
-		var controller internal.IController = encounters.Controller{}
+		// declare instance of encounters Controller
+		controller := encounters.NewController()
 
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select encounters resource group", encountersGroups)
-		encountersGroup := internal.RunSelectPrompt(selectPrompt)
+		resource := internal.RunSelectPrompt(selectPrompt)
 
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			resource, err := controller.GetSpecific(encountersGroup, search)
+			resource, err := controller.GetSpecific(resource, search)
 			if err != nil {
 				return
 			}
 			data.Data = resource
 		} else {
-			list := controller.GetList(encountersGroup)
+			list, _ := controller.GetList(resource)
 			data.Data = list
 		}
 
 		// create file if output flag exists
 		if outputToFile {
-			internal.OutputToFile(data.Data, encountersGroup)
+			internal.OutputToFile(data.Data, resource)
 		}
 		fmt.Println(data.Data)
 	},

@@ -24,24 +24,24 @@ var berriesCmd = &cobra.Command{
 
 		// select prompt
 		selectPrompt := internal.CreateListPrompt("Select berries resource group", berriesResources)
-		berriesGroup := internal.RunSelectPrompt(selectPrompt)
+		resource := internal.RunSelectPrompt(selectPrompt)
 
 		// flag to search for specific resource else return paginated list
 		if search {
 			search := internal.RunSearchPrompt(internal.CreateSearchPrompt())
-			resource, err := controller.GetSpecific(berriesGroup, search)
+			resource, err := controller.GetSpecific(resource, search)
 			if err != nil {
 				return
 			}
 			data.Data = resource
 		} else {
-			list, _ := controller.GetList(berriesGroup)
+			list, _ := controller.GetList(resource)
 			data.Data = list
 		}
 
 		// create file if output flag exists
 		if outputToFile {
-			internal.OutputToFile(data.Data, berriesGroup)
+			internal.OutputToFile(data.Data, resource)
 		}
 		fmt.Println(data.Data)
 	},

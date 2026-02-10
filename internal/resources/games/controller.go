@@ -1,23 +1,37 @@
 package games
 
-import "github.com/mtslzr/pokeapi-go/structs"
+import (
+	"fmt"
 
-func (controller Controller) GetList(result string) structs.Resource {
-	switch result {
-	case "Generation":
-		return controller.games.GetGenerationList()
-	case "Pokedex":
-		return controller.games.GetPokedexList()
-	case "Version":
-		return controller.games.GetVersionList()
-	case "Version Group":
-		return controller.games.GetVersionGroupList()
-	}
+	gamesGroup "github.com/JoshGuarino/PokeGo/pkg/resources/games"
+)
 
-	return structs.Resource{}
+type GamesController struct {
+	games gamesGroup.Games
 }
 
-func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
+func NewController() GamesController {
+	return GamesController{
+		games: gamesGroup.NewGamesGroup(),
+	}
+}
+
+func (controller GamesController) GetList(result string, limit int, offset int) (any, error) {
+	switch result {
+	case "Generation":
+		return controller.games.GetGenerationList(limit, offset)
+	case "Pokedex":
+		return controller.games.GetPokedexList(limit, offset)
+	case "Version":
+		return controller.games.GetVersionList(limit, offset)
+	case "Version Group":
+		return controller.games.GetVersionGroupList(limit, offset)
+	}
+
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
+}
+
+func (controller GamesController) GetSpecific(result string, search string) (any, error) {
 	switch result {
 	case "Generation":
 		return controller.games.GetGeneration(search)
@@ -29,5 +43,5 @@ func (controller Controller) GetSpecific(result string, search string) (interfac
 		return controller.games.GetVersionGroup(search)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }

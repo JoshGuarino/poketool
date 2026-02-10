@@ -1,65 +1,91 @@
 package games
 
 import (
-	"fmt"
-
-	"github.com/joshguarino/poketool/internal"
-	"github.com/mtslzr/pokeapi-go"
-	"github.com/mtslzr/pokeapi-go/structs"
+	"github.com/JoshGuarino/PokeGo/pkg/models"
+	gamesGroup "github.com/JoshGuarino/PokeGo/pkg/resources/games"
 )
 
-func (games Games) GetGeneration(nameOrId string) (structs.Generation, error) {
-	generation, err := pokeapi.Generation(nameOrId)
+type IGames interface {
+	GetGeneration(nameOrId string) (*models.Generation, error)
+	GetGenerationList(limit int, offest int) (*models.NamedResourceList, error)
+	GetPokedex(nameOrId string) (*models.Pokedex, error)
+	GetPokedexList(limit int, offest int) (*models.NamedResourceList, error)
+	GetVersion(nameOrId string) (*models.Version, error)
+	GetVersionList(limit int, offest int) (*models.NamedResourceList, error)
+	GetVersionGroup(nameOrId string) (*models.VersionGroup, error)
+	GetVersionGroupList(limit int, offest int) (*models.NamedResourceList, error)
+}
+
+type Games struct {
+	gamesGroup gamesGroup.Games
+}
+
+func NewGames() Games {
+	return Games{
+		gamesGroup: gamesGroup.NewGamesGroup(),
+	}
+}
+
+func (g Games) GetGeneration(nameOrId string) (*models.Generation, error) {
+	generation, err := g.gamesGroup.GetGeneration(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "generation", nameOrId)
-		return structs.Generation{}, err
+		return nil, err
 	}
 	return generation, nil
 }
 
-func (games Games) GetGenerationList() structs.Resource {
-	generationList := internal.GetResourceList(generationEndpoint)
-	return generationList
+func (g Games) GetGenerationList(limit int, offest int) (*models.NamedResourceList, error) {
+	generationList, err := g.gamesGroup.GetGenerationList(limit, offest)
+	if err != nil {
+		return nil, err
+	}
+	return generationList, nil
 }
 
-func (games Games) GetPokedex(nameOrId string) (structs.Pokedex, error) {
-	pokedex, err := pokeapi.Pokedex(nameOrId)
+func (g Games) GetPokedex(nameOrId string) (*models.Pokedex, error) {
+	pokedex, err := g.gamesGroup.GetPokedex(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "pokedex", nameOrId)
-		return structs.Pokedex{}, err
+		return nil, err
 	}
 	return pokedex, nil
 }
 
-func (games Games) GetPokedexList() structs.Resource {
-	pokedexList := internal.GetResourceList(pokedexEndpoint)
-	return pokedexList
+func (g Games) GetPokedexList(limit int, offest int) (*models.NamedResourceList, error) {
+	pokedexList, err := g.gamesGroup.GetPokedexList(limit, offest)
+	if err != nil {
+		return nil, err
+	}
+	return pokedexList, nil
 }
 
-func (games Games) GetVersion(nameOrId string) (structs.Version, error) {
-	version, err := pokeapi.Version(nameOrId)
+func (g Games) GetVersion(nameOrId string) (*models.Version, error) {
+	version, err := g.gamesGroup.GetVersion(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "version", nameOrId)
-		return structs.Version{}, err
+		return nil, err
 	}
 	return version, nil
 }
 
-func (games Games) GetVersionList() structs.Resource {
-	versionList := internal.GetResourceList(versionEndpoint)
-	return versionList
+func (g Games) GetVersionList(limit int, offest int) (*models.NamedResourceList, error) {
+	versionList, err := g.gamesGroup.GetVersionList(limit, offest)
+	if err != nil {
+		return nil, err
+	}
+	return versionList, nil
 }
 
-func (games Games) GetVersionGroup(nameOrId string) (structs.VersionGroup, error) {
-	versionGroup, err := pokeapi.VersionGroup(nameOrId)
+func (g Games) GetVersionGroup(nameOrId string) (*models.VersionGroup, error) {
+	versionGroup, err := g.gamesGroup.GetVersionGroup(nameOrId)
 	if err != nil {
-		fmt.Printf(internal.ErrorStringGetByNameOrId, "version group", nameOrId)
-		return structs.VersionGroup{}, err
+		return nil, err
 	}
 	return versionGroup, nil
 }
 
-func (games Games) GetVersionGroupList() structs.Resource {
-	versionGroupList := internal.GetResourceList(versionGroupEndpoint)
-	return versionGroupList
+func (g Games) GetVersionGroupList(limit int, offest int) (*models.NamedResourceList, error) {
+	versionGroupList, err := g.gamesGroup.GetVersionGroupList(limit, offest)
+	if err != nil {
+		return nil, err
+	}
+	return versionGroupList, nil
 }

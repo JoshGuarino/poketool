@@ -7,11 +7,11 @@ import (
 
 type IContests interface {
 	GetContestType(nameOrId string) (*models.ContestType, error)
-	GetContestTypeList() *models.Resource
+	GetContestTypeList(limit int, offset int) (*models.NamedResourceList, error)
 	GetContestEffect(id string) (*models.ContestEffect, error)
-	GetContestEffectList() *models.Resource
+	GetContestEffectList(limit int, offset int) (*models.ResourceList, error)
 	GetSuperContestEffect(id string) (*models.SuperContestEffect, error)
-	GetSuperContestEffectList() *models.Resource
+	GetSuperContestEffectList(limit int, offset int) (*models.ResourceList, error)
 }
 
 type Contests struct {

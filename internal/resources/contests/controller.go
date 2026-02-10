@@ -3,12 +3,11 @@ package contests
 import (
 	"fmt"
 
-	"github.com/JoshGuarino/PokeGo/pkg/models"
 	contestsGroup "github.com/JoshGuarino/PokeGo/pkg/resources/contests"
 )
 
 type IController interface {
-	GetList(result string) (*models.NamedResourceList, error)
+	GetList(result string) (any, error)
 	GetSpecific(result string, search string) (any, error)
 }
 

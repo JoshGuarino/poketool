@@ -8,7 +8,7 @@ import (
 	"github.com/joshguarino/poketool/internal/resources/contests"
 	"github.com/joshguarino/poketool/internal/resources/encounters"
 	"github.com/joshguarino/poketool/internal/resources/evolution"
-	// "github.com/joshguarino/poketool/internal/resources/games"
+	"github.com/joshguarino/poketool/internal/resources/games"
 	// "github.com/joshguarino/poketool/internal/resources/items"
 	// "github.com/joshguarino/poketool/internal/resources/locations"
 	// "github.com/joshguarino/poketool/internal/resources/machines"
@@ -62,6 +62,7 @@ var commands = []Command{
 			"Evolution Chain",
 			"Evolution Trigger",
 		},
+		controller: evolution.NewController(),
 	},
 	{
 		Name:        "games",
@@ -72,6 +73,7 @@ var commands = []Command{
 			"Version",
 			"Version Group",
 		},
+		controller: games.NewController(),
 	},
 	{
 		Name:        "items",

@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var controller internal.IController = Controller{items: Items{}}
+var controller internal.IController = 
 
 func TestGetList(t *testing.T) {
 	rItem := controller.GetList("Item")

@@ -13,7 +13,7 @@ import (
 	"github.com/joshguarino/poketool/internal/resources/locations"
 	"github.com/joshguarino/poketool/internal/resources/machines"
 	"github.com/joshguarino/poketool/internal/resources/moves"
-	// "github.com/joshguarino/poketool/internal/resources/pokemon"
+	"github.com/joshguarino/poketool/internal/resources/pokemon"
 	"github.com/spf13/cobra"
 )
 
@@ -140,6 +140,7 @@ var commands = []Command{
 			"Stats",
 			"Types",
 		},
+		controller: pokemon.NewController(),
 	},
 }
 

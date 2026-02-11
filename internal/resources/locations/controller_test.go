@@ -3,28 +3,28 @@ package locations
 import (
 	"testing"
 
+	"github.com/JoshGuarino/PokeGo/pkg/models"
 	"github.com/joshguarino/poketool/internal"
-	"github.com/mtslzr/pokeapi-go/structs"
 	"github.com/stretchr/testify/assert"
 )
 
-var controller internal.IController = Controller{locations: Locations{}}
+var controller internal.IController = NewController()
 
 func TestGetList(t *testing.T) {
-	rLocation := controller.GetList("Location")
-	rArea := controller.GetList("Location Area")
-	rPalPark := controller.GetList("Pal Park Area")
-	rRegion := controller.GetList("Region")
-	rFail := controller.GetList("test")
-	assert.IsType(t, []structs.Result{}, rLocation.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rLocation.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rArea.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rArea.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rPalPark.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rPalPark.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rRegion.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rRegion.Results, "Expected to not have an empty array.")
-	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
+	rLocation, _ := controller.GetList("Location", 20, 0)
+	rArea, _ := controller.GetList("Location Area", 20, 0)
+	rPalPark, _ := controller.GetList("Pal Park Area", 20, 0)
+	rRegion, _ := controller.GetList("Region", 20, 0)
+	_, err := controller.GetList("test", 20, 0)
+	assert.IsType(t, &models.NamedResourceList{}, rLocation, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rLocation, "Expected to not have an empty array.")
+	assert.IsType(t, &models.NamedResourceList{}, rArea, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rArea, "Expected to not have an empty array.")
+	assert.IsType(t, &models.NamedResourceList{}, rPalPark, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rPalPark, "Expected to not have an empty array.")
+	assert.IsType(t, &models.NamedResourceList{}, rRegion, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rRegion, "Expected to not have an empty array.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }
 
 func TestGetSpecific(t *testing.T) {
@@ -32,10 +32,10 @@ func TestGetSpecific(t *testing.T) {
 	rArea, _ := controller.GetSpecific("Location Area", "1")
 	rPalPark, _ := controller.GetSpecific("Pal Park Area", "1")
 	rRegion, _ := controller.GetSpecific("Region", "1")
-	rFail, _ := controller.GetSpecific("test", "test")
-	assert.IsType(t, structs.Location{}, rLocation, "Expected to have type 'Location' struct.")
-	assert.IsType(t, structs.LocationArea{}, rArea, "Expected to have type 'LocationArea' struct.")
-	assert.IsType(t, structs.PalParkArea{}, rPalPark, "Expected to have type 'PalParkArea' struct.")
-	assert.IsType(t, structs.Region{}, rRegion, "Expected to have type 'Region' struct.")
-	assert.Equal(t, nil, rFail, "Expected to have 'nil' value.")
+	_, err := controller.GetSpecific("test", "test")
+	assert.IsType(t, &models.Location{}, rLocation, "Expected to have type 'Location' struct.")
+	assert.IsType(t, &models.LocationArea{}, rArea, "Expected to have type 'LocationArea' struct.")
+	assert.IsType(t, &models.PalParkArea{}, rPalPark, "Expected to have type 'PalParkArea' struct.")
+	assert.IsType(t, &models.Region{}, rRegion, "Expected to have type 'Region' struct.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }

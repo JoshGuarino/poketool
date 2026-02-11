@@ -3,37 +3,37 @@ package moves
 import (
 	"testing"
 
+	"github.com/JoshGuarino/PokeGo/pkg/models"
 	"github.com/joshguarino/poketool/internal"
-	"github.com/mtslzr/pokeapi-go/structs"
 	"github.com/stretchr/testify/assert"
 )
 
-var controller internal.IController = Controller{moves: Moves{}}
+var controller internal.IController = NewController()
 
 func TestGetList(t *testing.T) {
-	rMove := controller.GetList("Move")
-	rAilment := controller.GetList("Move Ailment")
-	rBattle := controller.GetList("Move Battle Style")
-	rCategory := controller.GetList("Move Category")
-	rDamage := controller.GetList("Move Damage Class")
-	rLearn := controller.GetList("Move Learn Method")
-	rTarget := controller.GetList("Move Target")
-	rFail := controller.GetList("test")
-	assert.IsType(t, []structs.Result{}, rMove.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rMove.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rAilment.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rAilment.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rBattle.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rBattle.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rCategory.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rCategory.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rDamage.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rDamage.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rLearn.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rLearn.Results, "Expected to not have an empty array.")
-	assert.IsType(t, []structs.Result{}, rTarget.Results, "Expected to have array of type 'Result' struct.")
-	assert.NotEmpty(t, rTarget.Results, "Expected to not have an empty array.")
-	assert.Equal(t, structs.Resource{}, rFail, "Expected to have empty struct of type Resource{}.")
+	rMove, _ := controller.GetList("Move", 20, 0)
+	rAilment, _ := controller.GetList("Move Ailment", 20, 0)
+	rBattle, _ := controller.GetList("Move Battle Style", 20, 0)
+	rCategory, _ := controller.GetList("Move Category", 20, 0)
+	rDamage, _ := controller.GetList("Move Damage Class", 20, 0)
+	rLearn, _ := controller.GetList("Move Learn Method", 20, 0)
+	rTarget, _ := controller.GetList("Move Target", 20, 0)
+	_, err := controller.GetList("test", 20, 0)
+	assert.IsType(t, &models.NamedResourceList{}, rMove, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rMove, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rAilment, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rAilment, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rBattle, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rBattle, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rCategory, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rCategory, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rDamage, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rDamage, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rLearn, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rLearn, "Expected to not have an empty struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rTarget, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.NotEmpty(t, rTarget, "Expected to not have an empty struct.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }
 
 func TestGetSpecific(t *testing.T) {
@@ -44,13 +44,13 @@ func TestGetSpecific(t *testing.T) {
 	rDamage, _ := controller.GetSpecific("Move Damage Class", "1")
 	rLearn, _ := controller.GetSpecific("Move Learn Method", "1")
 	rTarget, _ := controller.GetSpecific("Move Target", "1")
-	rFail, _ := controller.GetSpecific("test", "test")
-	assert.IsType(t, structs.Move{}, rMove, "Expected to have type 'Move' struct.")
-	assert.IsType(t, structs.MoveAilment{}, rAilment, "Expected to have type 'MoveAilment' struct.")
-	assert.IsType(t, structs.MoveBattleStyle{}, rBattle, "Expected to have type 'MoveBattleStyle' struct.")
-	assert.IsType(t, structs.MoveCategory{}, rCategory, "Expected to have type 'MoveCategory' struct.")
-	assert.IsType(t, structs.MoveDamageClass{}, rDamage, "Expected to have type 'MoveDamageClass' struct.")
-	assert.IsType(t, structs.MoveLearnMethod{}, rLearn, "Expected to have type 'MoveLearnMethod' struct.")
-	assert.IsType(t, structs.MoveTarget{}, rTarget, "Expected to have type 'MoveTarget' struct.")
-	assert.Equal(t, nil, rFail, "Expected to have 'nil' value.")
+	_, err := controller.GetSpecific("test", "test")
+	assert.IsType(t, &models.Move{}, rMove, "Expected to have type 'Move' struct.")
+	assert.IsType(t, &models.MoveAilment{}, rAilment, "Expected to have type 'MoveAilment' struct.")
+	assert.IsType(t, &models.MoveBattleStyle{}, rBattle, "Expected to have type 'MoveBattleStyle' struct.")
+	assert.IsType(t, &models.MoveCategory{}, rCategory, "Expected to have type 'MoveCategory' struct.")
+	assert.IsType(t, &models.MoveDamageClass{}, rDamage, "Expected to have type 'MoveDamageClass' struct.")
+	assert.IsType(t, &models.MoveLearnMethod{}, rLearn, "Expected to have type 'MoveLearnMethod' struct.")
+	assert.IsType(t, &models.MoveTarget{}, rTarget, "Expected to have type 'MoveTarget' struct.")
+	assert.Error(t, err, "Expected an error to be thrown.")
 }

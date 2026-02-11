@@ -1,33 +1,47 @@
 package locations
 
-import "github.com/mtslzr/pokeapi-go/structs"
+import (
+	"fmt"
 
-func (controller Controller) GetList(result string) structs.Resource {
-	switch result {
-	case "Location":
-		return controller.locations.GetLocationList()
-	case "Location Area":
-		return controller.locations.GetLocationAreaList()
-	case "Pal Park Area":
-		return controller.locations.GetPalParkAreaList()
-	case "Region":
-		return controller.locations.GetRegionList()
-	}
+	locationsGroup "github.com/JoshGuarino/PokeGo/pkg/resources/locations"
+)
 
-	return structs.Resource{}
+type LocationsController struct {
+	locations locationsGroup.Locations
 }
 
-func (controller Controller) GetSpecific(result string, search string) (interface{}, error) {
+func NewController() LocationsController {
+	return LocationsController{
+		locations: locationsGroup.NewLocationsGroup(),
+	}
+}
+
+func (c LocationsController) GetList(result string, limit int, offset int) (interface{}, error) {
 	switch result {
 	case "Location":
-		return controller.locations.GetLocation(search)
+		return c.locations.GetLocationList(limit, offset)
 	case "Location Area":
-		return controller.locations.GetLocationArea(search)
+		return c.locations.GetLocationAreaList(limit, offset)
 	case "Pal Park Area":
-		return controller.locations.GetPalParkArea(search)
+		return c.locations.GetPalParkAreaList(limit, offset)
 	case "Region":
-		return controller.locations.GetRegion(search)
+		return c.locations.GetRegionList(limit, offset)
 	}
 
-	return nil, nil
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
+}
+
+func (c LocationsController) GetSpecific(result string, search string) (interface{}, error) {
+	switch result {
+	case "Location":
+		return c.locations.GetLocation(search)
+	case "Location Area":
+		return c.locations.GetLocationArea(search)
+	case "Pal Park Area":
+		return c.locations.GetPalParkArea(search)
+	case "Region":
+		return c.locations.GetRegion(search)
+	}
+
+	return nil, fmt.Errorf("Unable to find resource %s in group", result)
 }

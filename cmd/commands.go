@@ -9,10 +9,10 @@ import (
 	"github.com/joshguarino/poketool/internal/resources/encounters"
 	"github.com/joshguarino/poketool/internal/resources/evolution"
 	"github.com/joshguarino/poketool/internal/resources/games"
-	// "github.com/joshguarino/poketool/internal/resources/items"
-	// "github.com/joshguarino/poketool/internal/resources/locations"
-	// "github.com/joshguarino/poketool/internal/resources/machines"
-	// "github.com/joshguarino/poketool/internal/resources/moves"
+	"github.com/joshguarino/poketool/internal/resources/items"
+	"github.com/joshguarino/poketool/internal/resources/locations"
+	"github.com/joshguarino/poketool/internal/resources/machines"
+	"github.com/joshguarino/poketool/internal/resources/moves"
 	// "github.com/joshguarino/poketool/internal/resources/pokemon"
 	"github.com/spf13/cobra"
 )
@@ -85,6 +85,7 @@ var commands = []Command{
 			"Item Fling Effect",
 			"Item Pocket",
 		},
+		controller: items.NewController(),
 	},
 	{
 		Name:        "locations",
@@ -95,6 +96,7 @@ var commands = []Command{
 			"Pal Park Area",
 			"Region",
 		},
+		controller: locations.NewController(),
 	},
 	{
 		Name:        "machines",
@@ -102,6 +104,7 @@ var commands = []Command{
 		Resources: []string{
 			"Machine",
 		},
+		controller: machines.NewController(),
 	},
 	{
 		Name:        "moves",
@@ -115,6 +118,7 @@ var commands = []Command{
 			"Move Learn Method",
 			"Move Target",
 		},
+		controller: moves.NewController(),
 	},
 	{
 		Name:        "pokemon",

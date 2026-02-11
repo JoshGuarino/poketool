@@ -13,8 +13,8 @@ var controller internal.IController = NewController()
 func TestGetList(t *testing.T) {
 	rMachines, _ := controller.GetList("Machine", 20, 0)
 	_, err := controller.GetList("test", 20, 0)
-	assert.IsType(t, &models.ResourceList{}, rMachines, "Expected to have array of type 'ResourceList' struct.")
-	assert.NotEmpty(t, rMachines, "Expected to not have an empty array.")
+	assert.IsType(t, &models.ResourceList{}, rMachines, "Expected to have type 'ResourceList' struct.")
+	assert.NotEmpty(t, rMachines, "Expected to not have an empty struct.")
 	assert.Error(t, err, "Expected an error to be thrown.")
 }
 

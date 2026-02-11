@@ -14,9 +14,9 @@ func TestGetList(t *testing.T) {
 	rChain, _ := controller.GetList("Evolution Chain", 20, 0)
 	rTrigger, _ := controller.GetList("Evolution Trigger", 20, 0)
 	_, err := controller.GetList("test", 20, 0)
-	assert.IsType(t, &models.ResourceList{}, rChain, "Expected to have array of type 'ResourceList' struct.")
+	assert.IsType(t, &models.ResourceList{}, rChain, "Expected to have type 'ResourceList' struct.")
 	assert.NotEmpty(t, rChain, "Expected to not have an empty struct.")
-	assert.IsType(t, &models.NamedResourceList{}, rTrigger, "Expected to have array of type 'NamedResourceList' struct.")
+	assert.IsType(t, &models.NamedResourceList{}, rTrigger, "Expected to have type 'NamedResourceList' struct.")
 	assert.NotEmpty(t, rTrigger, "Expected to not have an empty struct.")
 	assert.Error(t, err, "Expected an error to be thrown.")
 }

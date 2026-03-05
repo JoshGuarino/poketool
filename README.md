@@ -8,3 +8,4 @@ Poketool is go cli tool for looking up Pokémon data.
 - revamp command output for resource commands
 - add support for pagination resource list exploring
 - possibly switch to `https://github.com/charmbracelet/bubbletea` for terminal ui?
+- separate download command instead of download flag
